@@ -3,7 +3,7 @@
 
 void Resources::Load()
 {
-	std::cout << "Yay"; // yes
+	std::cout << "Yay"; // yes//TODO should also remove any prints that are not currently needed for debugging. 
 	alienTexture = LoadTexture("./Assets/Alien.png");
 	barrierTexture = LoadTexture("./Assets/Barrier.png");
 	shipTextures.push_back(LoadTexture("./Assets/Ship1.png"));

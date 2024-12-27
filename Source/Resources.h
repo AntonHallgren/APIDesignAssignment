@@ -2,7 +2,7 @@
 #include "raylib.h"
 #include "vector"
 
-struct Resources 
+struct Resources //TODO implement resource handling
 {
 	void Load();
 	//void Unload();

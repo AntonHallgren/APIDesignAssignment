@@ -89,7 +89,7 @@ void Game::Launch()
 	resources.Load();
 }
 
-void Game::Update()
+void Game::Update()//TODO too long, split into smaller
 {
 	switch (gameState)
 	{
@@ -482,7 +482,7 @@ void Game::Render()
 	}
 }
 
-void Game::SpawnAliens()
+void Game::SpawnAliens()//TODO can clean this up a bit
 {
 	for (int row = 0; row < formationHeight; row++) {
 		for (int col = 0; col < formationWidth; col++) {
@@ -500,7 +500,7 @@ void Game::SpawnAliens()
 
 bool Game::CheckNewHighScore()
 {
-	if (score > Leaderboard[4].score)
+	if (score > Leaderboard[4].score)//TODO hmm, hardcoded list length?
 	{
 		return true;
 	}
@@ -529,7 +529,7 @@ void Game::InsertNewHighScore(std::string name)
 	}
 }
 
-void Game::LoadLeaderboard()
+void Game::LoadLeaderboard()//TODO this is not done. complete or remove
 {
 	// CLEAR LEADERBOARD
 
@@ -542,7 +542,7 @@ void Game::LoadLeaderboard()
 	//CLOSE FILE
 }
 
-void Game::SaveLeaderboard()
+void Game::SaveLeaderboard()//TODO this is not done. complete or remove
 {
 	// SAVE LEADERBOARD AS ARRAY
 
@@ -568,7 +568,7 @@ void Game::SaveLeaderboard()
 }
 
 
-bool Game::CheckCollision(Vector2 circlePos, float circleRadius, Vector2 lineStart, Vector2 lineEnd)
+bool Game::CheckCollision(Vector2 circlePos, float circleRadius, Vector2 lineStart, Vector2 lineEnd)//TODO read again, make sure if it is clean
 {
 	// our objective is to calculate the distance between the closest point on the line to the centre of the circle, 
 	// and determine if it is shorter than the radius.
@@ -656,7 +656,7 @@ void Player::Update()
 		direction++;
 	}
 
-	x_pos += speed * direction;
+	x_pos += speed * direction;//TODO no time dependancy? make sure if that is ok
 
 	if (x_pos < 0 + radius)
 	{
@@ -685,7 +685,7 @@ void Player::Update()
 	
 }
 
-void Player::Render(Texture2D texture) 
+void Player::Render(Texture2D texture) //TODO read about Raylib Texture2D, is it ok to pass them around like this? See also other render functions
 {
 	float window_height = GetScreenHeight(); 
 
@@ -712,7 +712,7 @@ void Projectile::Update()
 	position.y -= speed;
 
 	// UPDATE LINE POSITION
-	lineStart.y = position.y - 15;
+	lineStart.y = position.y - 15;//TODO hardcoded value
 	lineEnd.y   = position.y + 15;
 
 	lineStart.x = position.x;
@@ -894,7 +894,7 @@ void Background::Render()
 
 
 
-
+//TODO remove unused code
 
 /*LEGACY CODE
 	// our objective is to calculate the distance between the closest point of the line to the centre of the circle,

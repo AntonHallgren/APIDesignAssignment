@@ -37,4 +37,4 @@ void LoadLevelFromFile(const std::string& filename)
 }
 
 
-	
+//TODO looks like this creates a local list of non-specific entities. Is this function used? Or a remain that can be safely removed
