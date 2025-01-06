@@ -42,7 +42,7 @@ public:
 	EntityType type = EntityType::PLAYER;
 
 	void Initialize();
-	void Render(Texture2D texture);
+	void Render(const TextureRAII& texture);
 	void Update();
 	
 };
@@ -63,7 +63,7 @@ public:
 
 	void Update();
 
-	void Render(Texture2D texture);
+	void Render(const TextureRAII& texture);
 };
 
 struct Wall 
@@ -77,7 +77,7 @@ public:
 	int radius = 60;
 
 
-	void Render(Texture2D texture); 
+	void Render(const TextureRAII& texture);
 	void Update(); 
 };
 
@@ -98,7 +98,7 @@ public:
 	int speed = 2; 
 		 
 	void Update(); 
-	void Render(Texture2D texture); 
+	void Render(const TextureRAII& texture);
 };
 
 
@@ -154,7 +154,7 @@ struct Game
 	void End();
 
 	void Continue();
-	void Launch();
+	//void Launch();
 
 	void Update();
 	void Render();

@@ -83,11 +83,11 @@ void Game::Continue()
 	gameState = State::STARTSCREEN;
 }
 
-void Game::Launch()
-{
-	//LOAD SOME RESOURCES HERE
-	resources.Load();
-}
+//void Game::Launch()//TODO remove if safe
+//{
+//	//LOAD SOME RESOURCES HERE
+//	resources.Load();
+//}
 
 void Game::Update()//TODO too long, split into smaller
 {
@@ -370,7 +370,8 @@ void Game::Render()
 		DrawText(TextFormat("Lives: %i", player.lives), 50, 70, 40, YELLOW);
 
 		//player rendering 
-		player.Render(resources.shipTextures[player.activeTexture]);
+		//player.Render(resources.shipTextures[player.activeTexture]);//Old version
+		player.Render(resources.ship1);//TODO recreate animation system
 
 		//projectile rendering
 		for (int i = 0; i < Projectiles.size(); i++)
@@ -685,11 +686,11 @@ void Player::Update()
 	
 }
 
-void Player::Render(Texture2D texture) //TODO read about Raylib Texture2D, is it ok to pass them around like this? See also other render functions
+void Player::Render(const TextureRAII& texture) //TODO read about Raylib Texture2D, is it ok to pass them around like this? See also other render functions
 {
 	float window_height = GetScreenHeight(); 
 
-	DrawTexturePro(texture,
+	DrawTexturePro(texture.Get(),
 		{
 			0,
 			0,
@@ -724,10 +725,10 @@ void Projectile::Update()
 	}
 }
 
-void Projectile::Render(Texture2D texture)
+void Projectile::Render(const TextureRAII& texture)
 {
 	//DrawCircle((int)position.x, (int)position.y, 10, RED);
-	DrawTexturePro(texture,
+	DrawTexturePro(texture.Get(),
 		{
 			0,
 			0,
@@ -744,9 +745,9 @@ void Projectile::Render(Texture2D texture)
 		WHITE);
 }
 
-void Wall::Render(Texture2D texture)
+void Wall::Render(const TextureRAII& texture)
 {
-	DrawTexturePro(texture,
+	DrawTexturePro(texture.Get(),
 		{
 			0,
 			0,
@@ -805,14 +806,14 @@ void Alien::Update()
 	}
 }
 
-void Alien::Render(Texture2D texture) 
+void Alien::Render(const TextureRAII& texture)
 {
 	//DrawRectangle((int)position.x - 25, (int)position.y, 30, 30, RED);
 	//DrawCircle((int)position.x, (int)position.y, radius, GREEN);
 	
 	
 
-	DrawTexturePro(texture,
+	DrawTexturePro(texture.Get(),
 		{
 			0,
 			0,

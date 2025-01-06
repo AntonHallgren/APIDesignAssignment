@@ -21,7 +21,7 @@ public:
 	TextureRAII(const TextureRAII& other) = delete;
 	TextureRAII& operator=(const TextureRAII& other) = delete;
 
-	Texture2D& Get()
+	const Texture2D& Get() const
 	{
 		return texture;
 	}
