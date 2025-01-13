@@ -35,7 +35,7 @@ int main(void)
     const int screenWidth = 1920;
     const int screenHeight = 1080;
 
-    InitWindow(screenWidth, screenHeight, "SPACE INVADERS");
+    InitWindow(screenWidth, screenHeight, "SPACE INVADERS");//TODO this also need RAII
 
     SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
 
@@ -46,9 +46,10 @@ int main(void)
     
     //--------------------------------------------------------------------------------------
 
-    InitAudioDevice();
-
-    auto sound = LoadSound("./hitHurt.ogg");
+    InitAudioDevice();//TODO this also need RAII
+    
+    //TODO check what happens if I dont load the sound. Is it used?
+    auto sound = LoadSound("./hitHurt.ogg");//TODO this also need RAII//Is this used?
     
 
 
