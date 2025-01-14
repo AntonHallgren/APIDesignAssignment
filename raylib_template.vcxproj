@@ -169,11 +169,8 @@
     <ClCompile Include="Source\Resources.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\AudioHandler.h" />
     <ClInclude Include="Source\Entities.h" />
     <ClInclude Include="Source\game.h" />
-    <ClInclude Include="Source\Player.h" />
-    <ClInclude Include="Source\Projectile.h" />
     <ClInclude Include="Source\Resources.h" />
     <ClInclude Include="Source\TextureRAII.h" />
   </ItemGroup>

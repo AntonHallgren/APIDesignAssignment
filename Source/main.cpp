@@ -40,56 +40,28 @@ int main(void)
     SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
 
     Game game = { State::STARTSCREEN };
-
-    //game.Launch();
-
     
     //--------------------------------------------------------------------------------------
 
-    InitAudioDevice();//TODO this also need RAII
     
-    //TODO check what happens if I dont load the sound. Is it used?
-    auto sound = LoadSound("./hitHurt.ogg");//TODO this also need RAII//Is this used?
-    
-
+    //TODO: If there is time, implement sound
 
 
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
     {
-        // Update
-        //----------------------------------------------------------------------------------
-        // TODO: Update your variables here
-        //----------------------------------------------------------------------------------
-
-        //if (IsKeyPressed(KEY_SPACE))
-        //{
-        //    PlaySound(sound);
-        //}
-
-        //if (IsKeyPressed(KEY_BACKSPACE))
-        //{
-        //    StopSound(sound);
-        //}
 
         game.Update();
-      
-
         // Draw
         //----------------------------------------------------------------------------------
         BeginDrawing();
 
         ClearBackground(BLACK);
-
-       
-
         game.Render();
 
         EndDrawing();
         //----------------------------------------------------------------------------------
     }
-
-    CloseAudioDevice();
     
     // De-Initialization
     //--------------------------------------------------------------------------------------
