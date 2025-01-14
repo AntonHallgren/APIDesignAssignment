@@ -29,7 +29,7 @@ bool pointInCircle(Vector2 circlePos, float radius, Vector2 point) // Uses pytha
 }
 
 
-void Game::Start()
+void Game::Start()//TODO I dont think this is two step initiallisation but rather entering the main game state, but need to make sure
 {
 	// creating walls 
 	float window_width = (float)GetScreenWidth(); 
@@ -45,16 +45,12 @@ void Game::Start()
 
 	}
 
-
 	//creating player
-	Player newPlayer;
-	player = newPlayer;
-	player.Initialize();
+	player = Player();
 
 	//creating aliens
 	SpawnAliens();
 	
-
 	//creating background
 	Background newBackground;
 	newBackground.Initialize(600);

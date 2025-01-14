@@ -4,6 +4,7 @@
 #include "Resources.h"
 #include <string>
 #include "Entities.h"
+#include "Player.h"
 
 
 enum struct State
