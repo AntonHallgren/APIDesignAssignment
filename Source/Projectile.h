@@ -11,7 +11,7 @@ class Projectile
 	bool playerProjectile;//TODO change back to enum
 
 public:
-	Projectile(Vector2 startPosition, bool isPlayerProjectile) noexcept;
+	Projectile(Vector2 startPosition, EntityType type) noexcept;
 	void Update() noexcept;
 	void Deactive() noexcept;
 	bool GetActive() const noexcept;

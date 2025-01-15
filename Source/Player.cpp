@@ -20,7 +20,7 @@ void Player::Update() noexcept
 		direction++;
 	}
 
-	x_pos += speed * direction;//TODO no time dependancy? make sure if that is ok
+	x_pos += speed * direction;
 
 	if (x_pos < PLAYER_RADIUS)
 	{
@@ -56,7 +56,7 @@ void Player::TakeDamage()noexcept
 
 int Player::GetLives() const noexcept
 {
-	return lives;//TODO maybe "lives" should not be held by the player in the first place?
+	return lives;
 }
 
 float Player::GetXPos() const noexcept

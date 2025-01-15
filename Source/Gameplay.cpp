@@ -73,7 +73,7 @@ void Gameplay::End() noexcept//TODO make sure game state is changed properly
 
 
 
-void Gameplay::SpawnAliens() noexcept//TODO can clean this up a bit
+void Gameplay::SpawnAliens() noexcept
 {
 	for (int row = 0; row < formationHeight; row++) {
 		for (int col = 0; col < formationWidth; col++) {
@@ -167,17 +167,17 @@ void Gameplay::ProjectileAlienCollision(Projectile& proj) noexcept
 	}
 }
 
-void Gameplay::FireProjectiles() noexcept//TODO should perhaps be two functions
+void Gameplay::FireProjectiles() noexcept
 {
 	//Player
 	if (IsKeyPressed(KEY_SPACE))
 	{
 		const float window_height = static_cast<float>(GetScreenHeight());
-		Projectiles.emplace_back(Projectile{ {player.GetXPos(), window_height - 130}, true });//TODO can I get the position completely from player instead?
+		Projectiles.emplace_back(Projectile{ {player.GetXPos(), window_height - 130}, EntityType::PLAYER_PROJECTILE });
 	}
 	//Alien
 	shootTimer += 1;
-	if (shootTimer < 60)//TODO should not be hardcoded here
+	if (shootTimer < 60)
 	{
 		return;
 	}
@@ -188,7 +188,7 @@ void Gameplay::FireProjectiles() noexcept//TODO should perhaps be two functions
 	}
 	Vector2 p = Aliens[randomAlienIndex].GetPosition();
 	p.y += 40;
-	Projectiles.emplace_back(Projectile{ p, false });
+	Projectiles.emplace_back(Projectile{ p, EntityType::ENEMY_PROJECTILE });
 	shootTimer = 0;
 }
 

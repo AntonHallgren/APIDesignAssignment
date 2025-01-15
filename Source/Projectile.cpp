@@ -1,10 +1,10 @@
 #include "Projectile.h"
 
 
-Projectile::Projectile(Vector2 startPosition, bool isPlayerProjectile) noexcept
+Projectile::Projectile(Vector2 startPosition, EntityType type) noexcept
 {
 	position = startPosition;
-	playerProjectile = isPlayerProjectile;
+	playerProjectile = type == EntityType::PLAYER_PROJECTILE;
 	speed = playerProjectile ? 15 : -15;
 }
 
