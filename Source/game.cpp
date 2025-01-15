@@ -8,20 +8,7 @@
 
 
 
-
-
-//void Game::Start()//TODO I dont think this is two step initiallisation but rather entering the main game state, but need to make sure
-//{
-//	gameState = State::GAMEPLAY;
-//
-//}
-//
-//void Game::End()
-//{
-//	gameState = State::ENDSCREEN;
-//}
-
-void Game::ChangeState(State newState)
+void Game::ChangeState(State newState) noexcept
 {
 	gameState = newState;
 	switch (gameState)
@@ -51,7 +38,7 @@ void Game::ChangeState(State newState)
 //	resources.Load();
 //}
 
-void Game::Update()//TODO too long, split into smaller
+void Game::Update() noexcept//TODO too long, split into smaller
 {
 	switch (gameState)
 	{
@@ -83,7 +70,7 @@ void Game::Update()//TODO too long, split into smaller
 }
 
 
-void Game::Render()
+void Game::Render() const noexcept
 {
 	switch (gameState)
 	{

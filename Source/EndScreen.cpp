@@ -1,14 +1,14 @@
 #include "EndScreen.h"
 #include <fstream>
 
-void Endscreen::Start(int newScore)
+void Endscreen::Start(int newScore) noexcept
 {
 	score = newScore;
 	newHighScore = CheckNewHighScore();
 	active = true;
 }
 
-void Endscreen::Update()
+void Endscreen::Update() noexcept
 {
 	if (newHighScore)
 	{
@@ -23,7 +23,7 @@ void Endscreen::Update()
 	}
 }
 
-void Endscreen::Render()
+void Endscreen::Render() const noexcept
 {
 	if (newHighScore)
 	{
@@ -35,12 +35,12 @@ void Endscreen::Render()
 	}
 }
 
-bool Endscreen::GetActive()
+bool Endscreen::GetActive() const noexcept
 {
 	return active;
 }
 
-bool Endscreen::CheckNewHighScore()
+bool Endscreen::CheckNewHighScore() noexcept
 {
 	if (score > Leaderboard.back().score)
 	{
@@ -50,11 +50,11 @@ bool Endscreen::CheckNewHighScore()
 	return false;
 }
 
-void Endscreen::InsertNewHighScore(std::string name)
+void Endscreen::InsertNewHighScore(std::string nameGiven) noexcept
 {
-	PlayerData newData{ name, score };
+	PlayerData newData{ nameGiven, score };
 
-	for (int i = 0; i < Leaderboard.size(); i++)//TODO maybe there is a better way to do this
+	for (size_t i = 0; i < Leaderboard.size(); i++)//TODO maybe there is a better way to do this
 	{
 		if (newData.score > Leaderboard[i].score)
 		{
@@ -69,7 +69,7 @@ void Endscreen::InsertNewHighScore(std::string name)
 	}
 }
 
-void Endscreen::UpdateNameInputScreen()
+void Endscreen::UpdateNameInputScreen() noexcept
 {
 	mouseOnText = CheckCollisionPointRec(GetMousePosition(), textBox);
 	if (mouseOnText)
@@ -97,7 +97,7 @@ void Endscreen::UpdateNameInputScreen()
 	}
 }
 
-void Endscreen::ReadKeyboard()
+void Endscreen::ReadKeyboard() noexcept
 {
 	// Get char pressed on the queue
 	int key = GetCharPressed();
@@ -127,7 +127,7 @@ void Endscreen::ReadKeyboard()
 }
 
 
-void Endscreen::RenderNameInputScreen()
+void Endscreen::RenderNameInputScreen() const noexcept
 {
 	DrawText("NEW HIGHSCORE!", 600, 300, 60, YELLOW);
 	// BELOW CODE IS FOR NAME INPUT RENDER
@@ -176,17 +176,18 @@ void Endscreen::RenderNameInputScreen()
 	}
 }
 
-void Endscreen::RenderHighscoreScreen()
+void Endscreen::RenderHighscoreScreen()const noexcept
 {// If no highscore or name is entered, show scoreboard and call it a day
 	DrawText("PRESS ENTER TO CONTINUE", 600, 200, 40, YELLOW);
 
 	DrawText("LEADERBOARD", 50, 100, 40, YELLOW);
-
-	for (int i = 0; i < Leaderboard.size(); i++)
+	int i = 0;//Still need i for positioning of data
+	for (const PlayerData& pd : Leaderboard)
 	{
-		char* tempNameDisplay = Leaderboard[i].name.data();
-		DrawText(tempNameDisplay, 50, 140 + (i * 40), 40, YELLOW);
-		DrawText(TextFormat("%i", Leaderboard[i].score), 350, 140 + (i * 40), 40, YELLOW);
+		//char* tempNameDisplay = pd.name.data();
+		DrawText(pd.name.data(), 50, 140 + (i * 40), 40, YELLOW);
+		DrawText(TextFormat("%i", pd.score), 350, 140 + (i * 40), 40, YELLOW);
+		i++;
 	}
 }
 

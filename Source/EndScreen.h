@@ -34,24 +34,24 @@ class Endscreen
 
 
 public:
-	void Start(int newScore);
-	void Update();
-	void Render();
-	bool GetActive();
+	void Start(int newScore) noexcept;
+	void Update() noexcept;
+	void Render() const noexcept;
+	bool GetActive() const noexcept;
 
 
 private:
-	bool CheckNewHighScore();
+	bool CheckNewHighScore()noexcept;
 
-	void InsertNewHighScore(std::string name);
+	void InsertNewHighScore(std::string name)noexcept;
 
-	void UpdateNameInputScreen();
+	void UpdateNameInputScreen()noexcept;
 
-	void ReadKeyboard();
+	void ReadKeyboard()noexcept;
 
 
-	void RenderNameInputScreen();
-	void RenderHighscoreScreen();
+	void RenderNameInputScreen() const noexcept;
+	void RenderHighscoreScreen() const noexcept;
 
 
 

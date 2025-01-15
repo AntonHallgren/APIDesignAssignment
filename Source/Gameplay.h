@@ -32,25 +32,25 @@ class Gameplay
 	bool active = false;
 
 public:
-	void Update();
-	void Render();
-	bool GetActive();
-	void Start();
-	int GetScore();
+	void Update() noexcept;
+	void Render() const noexcept;
+	bool GetActive() const noexcept;
+	void Start() noexcept;
+	int GetScore() const noexcept;
 private:
-	void End();
+	void End() noexcept;
 
-	void SpawnAliens();
-
-
-	void UpdateEntities();
-
-	void CheckCollisions();
-	void ProjectileWallCollision(Projectile& proj);
-	void ProjectilePlayerCollision(Projectile& proj);
-	void ProjectileAlienCollision(Projectile& proj);
+	void SpawnAliens() noexcept;
 
 
-	void FireProjectiles();
-	void RemoveInactiveEntities();
+	void UpdateEntities() noexcept;
+
+	void CheckCollisions() noexcept;
+	void ProjectileWallCollision(Projectile& proj) noexcept;
+	void ProjectilePlayerCollision(Projectile& proj) noexcept;
+	void ProjectileAlienCollision(Projectile& proj) noexcept;
+
+
+	void FireProjectiles() noexcept;
+	void RemoveInactiveEntities() noexcept;
 };

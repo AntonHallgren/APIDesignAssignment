@@ -28,14 +28,14 @@ class Game
 
 
 public:
-	void Update();
-	void Render();
+	void Update() noexcept;
+	void Render() const noexcept;
 
 private:/*
 	void Start();
 	void End();*/
 
-	void ChangeState(State newState);
+	void ChangeState(State newState) noexcept;
 
 
 	//void Continue();

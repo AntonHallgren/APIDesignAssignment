@@ -2,7 +2,7 @@
 #include "Entities.h"
 
 
-const int WALL_RADIUS = 60;
+constexpr int WALL_RADIUS = 60;
 class Wall
 {
 	Vector2 position;

@@ -10,7 +10,7 @@ class TextureRAII
 
 
 public:
-	explicit TextureRAII(std::string_view fileName)
+	explicit TextureRAII(std::string_view fileName) noexcept
 	{
 		texture = LoadTexture(fileName.data());//TODO check that it loaded properly
 	}
@@ -20,8 +20,10 @@ public:
 	}
 	TextureRAII(const TextureRAII& other) = delete;
 	TextureRAII& operator=(const TextureRAII& other) = delete;
+	TextureRAII(const TextureRAII&& other) = delete;
+	TextureRAII& operator=(const TextureRAII&& other) = delete;
 
-	const Texture2D& Get() const
+	const Texture2D& Get() const noexcept
 	{
 		return texture;
 	}

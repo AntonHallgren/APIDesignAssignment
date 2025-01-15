@@ -44,6 +44,6 @@ void Wall::Render(const TextureRAII& texture) const noexcept
 		WHITE);
 
 
-	DrawText(TextFormat("%i", health), position.x - 21, position.y + 10, 40, RED);
+	DrawText(TextFormat("%i", health), (int)position.x - 21, (int)position.y + 10, 40, RED);
 
 }

@@ -1,6 +1,6 @@
 #include "Gameplay.h"
 
-void Gameplay::Update()
+void Gameplay::Update() noexcept
 {//Code
 	if (IsKeyReleased(KEY_Q))
 	{
@@ -12,7 +12,7 @@ void Gameplay::Update()
 	RemoveInactiveEntities();
 }
 
-void Gameplay::Render()
+void Gameplay::Render() const noexcept
 {
 	background.Render();
 	DrawText(TextFormat("Score: %i", score), 50, 20, 40, YELLOW);
@@ -34,12 +34,12 @@ void Gameplay::Render()
 	}
 }
 
-bool Gameplay::GetActive()
+bool Gameplay::GetActive() const noexcept
 {
 	return active;
 }
 
-void Gameplay::Start()
+void Gameplay::Start() noexcept
 {
 	// creating walls 
 	float window_width = (float)GetScreenWidth();
@@ -64,12 +64,12 @@ void Gameplay::Start()
 	active = true;
 }
 
-int Gameplay::GetScore()
+int Gameplay::GetScore() const noexcept
 {
 	return score;
 }
 
-void Gameplay::End()//TODO make sure game state is changed properly
+void Gameplay::End() noexcept//TODO make sure game state is changed properly
 {
 	//SAVE SCORE AND UPDATE SCOREBOARD
 	Projectiles.clear();
@@ -81,7 +81,7 @@ void Gameplay::End()//TODO make sure game state is changed properly
 
 
 
-void Gameplay::SpawnAliens()//TODO can clean this up a bit
+void Gameplay::SpawnAliens() noexcept//TODO can clean this up a bit
 {
 	for (int row = 0; row < formationHeight; row++) {
 		for (int col = 0; col < formationWidth; col++) {
@@ -91,7 +91,7 @@ void Gameplay::SpawnAliens()//TODO can clean this up a bit
 
 }
 
-void Gameplay::UpdateEntities()
+void Gameplay::UpdateEntities() noexcept
 {//Update Player
 	player.Update();
 
@@ -125,7 +125,7 @@ void Gameplay::UpdateEntities()
 	}
 }
 
-void Gameplay::CheckCollisions()
+void Gameplay::CheckCollisions() noexcept
 {
 	for (Projectile& proj : Projectiles)
 	{
@@ -141,7 +141,7 @@ void Gameplay::CheckCollisions()
 	}
 }
 
-void Gameplay::ProjectileWallCollision(Projectile& proj)
+void Gameplay::ProjectileWallCollision(Projectile& proj) noexcept
 {
 	for (Wall& wall : Walls)
 	{
@@ -153,7 +153,7 @@ void Gameplay::ProjectileWallCollision(Projectile& proj)
 	}
 }
 
-void Gameplay::ProjectilePlayerCollision(Projectile& proj)
+void Gameplay::ProjectilePlayerCollision(Projectile& proj) noexcept
 {
 	if (CheckCollision({ player.x_pos, GetScreenHeight() - player.player_base_height }, player.radius, proj.GetLineStart(), proj.GetLineStart()))
 	{
@@ -162,7 +162,7 @@ void Gameplay::ProjectilePlayerCollision(Projectile& proj)
 	}
 }
 
-void Gameplay::ProjectileAlienCollision(Projectile& proj)
+void Gameplay::ProjectileAlienCollision(Projectile& proj) noexcept
 {
 	for (Alien& alien : Aliens)
 	{
@@ -175,7 +175,7 @@ void Gameplay::ProjectileAlienCollision(Projectile& proj)
 	}
 }
 
-void Gameplay::FireProjectiles()//TODO should perhaps be two functions
+void Gameplay::FireProjectiles() noexcept//TODO should perhaps be two functions
 {
 	//Player
 	if (IsKeyPressed(KEY_SPACE))
@@ -198,7 +198,7 @@ void Gameplay::FireProjectiles()//TODO should perhaps be two functions
 	shootTimer = 0;
 }
 
-void Gameplay::RemoveInactiveEntities()
+void Gameplay::RemoveInactiveEntities() noexcept
 {
 	Projectiles.erase(std::remove_if(Projectiles.begin(), Projectiles.end(), [](Projectile p) { return !p.GetActive(); }), Projectiles.end());
 	Aliens.erase(std::remove_if(Aliens.begin(), Aliens.end(), [](Alien a) { return !a.GetActive(); }), Aliens.end());

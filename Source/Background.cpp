@@ -1,26 +1,26 @@
 #include "Backround.h"
 
-Star::Star()
+Star::Star()noexcept
 {
 	initPosition = { (float)GetRandomValue(-150, GetScreenWidth() + 150) ,(float)GetRandomValue(0, GetScreenHeight()) };
 	size = (float)GetRandomValue(1, 4) / 2;
 }
 
 //BACKGROUND
-void Star::Update(float starOffset)
+void Star::Update(float starOffset) noexcept
 {
 	position.x = initPosition.x + starOffset;
 	position.y = initPosition.y;
 
 }
 
-void Star::Render() const
+void Star::Render() const noexcept
 {
 	DrawCircle((int)position.x, (int)position.y, size, color);
 }
 
 
-Background::Background(int starAmount)
+Background::Background(int starAmount) noexcept
 {
 	for (int i = 0; i < starAmount; i++)
 	{
@@ -28,7 +28,7 @@ Background::Background(int starAmount)
 	}
 }
 
-void Background::Update(float offset)
+void Background::Update(float offset) noexcept
 {
 	for (Star& star : Stars)
 	{
@@ -38,7 +38,7 @@ void Background::Update(float offset)
 
 }
 
-void Background::Render() const
+void Background::Render() const noexcept
 {
 	for (const Star& star : Stars)
 	{

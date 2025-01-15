@@ -10,9 +10,9 @@ class Star
 	Color color = SKYBLUE;
 	float size = 0;
 public:
-	Star();
-	void Update(float starOffset);
-	void Render() const;
+	Star() noexcept;
+	void Update(float starOffset) noexcept;
+	void Render() const noexcept;
 };
 
 class Background
@@ -21,8 +21,8 @@ class Background
 
 	std::vector<Star> Stars;
 public:
-	Background(int starAmount);
-	void Update(float offset);
-	void Render() const;
+	Background(int starAmount) noexcept;
+	void Update(float offset) noexcept;
+	void Render() const noexcept;
 
 };

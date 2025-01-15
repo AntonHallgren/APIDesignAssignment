@@ -17,10 +17,10 @@ public://TODO remove public and handle the consecvenses.
 	//EntityType type = EntityType::PLAYER;//I believe this is unused and can be removed from all entities. 
 
 public:
-	Player();
-	void Render(const TextureRAII& texture);
-	void Update();
+	Player()noexcept;
+	void Render(const TextureRAII& texture) const noexcept;
+	void Update()noexcept;
 
-	int GetLives();
+	int GetLives() const noexcept;
 
 };

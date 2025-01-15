@@ -3,13 +3,13 @@
 
 
 
-Player::Player()
+Player::Player() noexcept
 {
 	float window_width = (float)GetScreenWidth();
 	x_pos = window_width / 2;
 }
 
-void Player::Update()
+void Player::Update() noexcept
 {
 
 	//Movement
@@ -52,14 +52,14 @@ void Player::Update()
 
 }
 
-int Player::GetLives()
+int Player::GetLives() const noexcept
 {
 	return lives;//TODO maybe "lives" should not be held by the player in the first place?
 }
 
-void Player::Render(const TextureRAII& texture) //TODO reimplement animation on player
+void Player::Render(const TextureRAII& texture) const noexcept //TODO reimplement animation on player
 {
-	float window_height = GetScreenHeight();
+	float window_height = (float)GetScreenHeight();
 
 	DrawTexturePro(texture.Get(),
 		{

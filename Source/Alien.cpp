@@ -8,8 +8,6 @@ Alien::Alien(Vector2 startPosition) noexcept
 
 void Alien::Update() noexcept
 {
-	int window_width = GetScreenWidth();
-
 	if (moveRight)
 	{
 		position.x += speed;

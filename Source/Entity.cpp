@@ -2,7 +2,7 @@
 // MATH FUNCTIONS
 float lineLength(Vector2 A, Vector2 B) //Uses pythagoras to calculate the length of a line
 {
-	float length = sqrtf(pow(B.x - A.x, 2) + pow(B.y - A.y, 2));
+	float length = sqrtf((float)(pow(B.x - A.x, 2) + pow(B.y - A.y, 2)));
 
 	return length;
 }
@@ -34,26 +34,26 @@ bool CheckCollision(Vector2 circlePos, float circleRadius, Vector2 lineStart, Ve
 	}
 
 	// simplify variables
-	Vector2 A = lineStart;
-	Vector2 B = lineEnd;
-	Vector2 C = circlePos;
+	const Vector2 A = lineStart;
+	const Vector2 B = lineEnd;
+	const Vector2 C = circlePos;
 
 	// calculate the length of the line
-	float length = lineLength(A, B);
+	const float length = lineLength(A, B);
 
 	// calculate the dot product
-	float dotP = (((C.x - A.x) * (B.x - A.x)) + ((C.y - A.y) * (B.y - A.y))) / pow(length, 2);
+	const float dotP = (((C.x - A.x) * (B.x - A.x)) + ((C.y - A.y) * (B.y - A.y))) / (length * length);
 
 	// use dot product to find closest point
-	float closestX = A.x + (dotP * (B.x - A.x));
-	float closestY = A.y + (dotP * (B.y - A.y));
+	const float closestX = A.x + (dotP * (B.x - A.x));
+	const float closestY = A.y + (dotP * (B.y - A.y));
 
 	//find out if coordinates are on the line.
 	// we do this by comparing the distance of the dot to the edges, with two vectors
 	// if the distance of the vectors combined is the same as the length the point is on the line
 
 	//since we are using floating points, we will allow the distance to be slightly innaccurate to create a smoother collision
-	float buffer = 0.1;
+	const float buffer = 0.1f;
 
 	float closeToStart = lineLength(A, { closestX, closestY }); //closestX + Y compared to line Start
 	float closeToEnd = lineLength(B, { closestX, closestY });	//closestX + Y compared to line End
