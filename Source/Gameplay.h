@@ -36,7 +36,7 @@ public:
 	void Render();
 	bool GetActive();
 	void Start();
-
+	int GetScore();
 private:
 	void End();
 

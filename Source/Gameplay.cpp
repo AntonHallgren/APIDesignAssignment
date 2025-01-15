@@ -64,6 +64,11 @@ void Gameplay::Start()
 	active = true;
 }
 
+int Gameplay::GetScore()
+{
+	return score;
+}
+
 void Gameplay::End()//TODO make sure game state is changed properly
 {
 	//SAVE SCORE AND UPDATE SCOREBOARD
