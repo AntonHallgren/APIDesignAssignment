@@ -2,7 +2,7 @@
 #include "Entities.h"
 
 
-const float ALIEN_RADIUS = 30;
+constexpr float ALIEN_RADIUS = 30;
 class Alien
 {
 	Color color = WHITE;

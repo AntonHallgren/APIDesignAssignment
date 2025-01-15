@@ -53,9 +53,4 @@ private:
 	void RenderNameInputScreen() const noexcept;
 	void RenderHighscoreScreen() const noexcept;
 
-
-
-
-	void LoadLeaderboard();//TODO neighter of these seems fully implemented
-	void SaveLeaderboard();
 };

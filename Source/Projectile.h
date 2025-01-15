@@ -11,9 +11,9 @@ class Projectile
 	bool playerProjectile;//TODO change back to enum
 
 public:
-	Projectile(Vector2 startPosition, bool isPlayerProjectile);
-	void Update();
-	void Deactive();
+	Projectile(Vector2 startPosition, bool isPlayerProjectile) noexcept;
+	void Update() noexcept;
+	void Deactive() noexcept;
 	bool GetActive() const noexcept;
 	bool IsPlayerProjectile() const noexcept;
 	Vector2 GetLineStart() const noexcept;

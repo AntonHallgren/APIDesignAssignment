@@ -32,8 +32,8 @@ int main(void)
 {    
     // Initialization
     //--------------------------------------------------------------------------------------
-    const int screenWidth = 1920;
-    const int screenHeight = 1080;
+    constexpr int screenWidth = 1920;
+    constexpr int screenHeight = 1080;
 
     InitWindow(screenWidth, screenHeight, "SPACE INVADERS");//TODO this also need RAII
 

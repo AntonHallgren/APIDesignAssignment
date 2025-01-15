@@ -1,14 +1,14 @@
 #include "Projectile.h"
 
 
-Projectile::Projectile(Vector2 startPosition, bool isPlayerProjectile)
+Projectile::Projectile(Vector2 startPosition, bool isPlayerProjectile) noexcept
 {
 	position = startPosition;
 	playerProjectile = isPlayerProjectile;
 	speed = playerProjectile ? 15 : -15;
 }
 
-void Projectile::Update()
+void Projectile::Update() noexcept
 {
 	position.y -= speed;
 
@@ -18,7 +18,7 @@ void Projectile::Update()
 	}
 }
 
-void Projectile::Deactive()
+void Projectile::Deactive() noexcept
 {
 	active = false;
 }
@@ -35,12 +35,24 @@ bool Projectile::IsPlayerProjectile() const noexcept
 
 Vector2 Projectile::GetLineStart() const noexcept
 {
-	return Vector2Add(position, { 0, -15 });
+	try {
+		return Vector2Add(position, { 0, -15 });
+	}
+	catch(std::exception)
+	{
+		//I dont think Vector2Add can actually throw, but I want to be noexcept and this seems to be the most sensible way to handle it
+	}
+	return position;
 }
 
 Vector2 Projectile::GetLineEnd() const noexcept
 {
-	return Vector2Add(position, { 0, 15 });
+	try {
+		return Vector2Add(position, { 0, 15 });
+	}
+	catch (std::exception)
+	{}
+	return position;
 }
 
 

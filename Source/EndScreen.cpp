@@ -18,7 +18,6 @@ void Endscreen::Update() noexcept
 
 	if (IsKeyReleased(KEY_ENTER))
 	{
-		SaveLeaderboard();
 		active = false;
 	}
 }
@@ -137,15 +136,23 @@ void Endscreen::RenderNameInputScreen() const noexcept
 	if (mouseOnText)
 	{
 		// HOVER CONFIRMIATION
-		DrawRectangleLines((int)textBox.x, (int)textBox.y, (int)textBox.width, (int)textBox.height, RED);
+		DrawRectangleLines(
+			static_cast<int>(textBox.x), 
+			static_cast<int>(textBox.y), 
+			static_cast<int>(textBox.width), 
+			static_cast<int>(textBox.height), RED);
 	}
 	else
 	{
-		DrawRectangleLines((int)textBox.x, (int)textBox.y, (int)textBox.width, (int)textBox.height, DARKGRAY);
+		DrawRectangleLines(
+			static_cast<int>(textBox.x), 
+			static_cast<int>(textBox.y), 
+			static_cast<int>(textBox.width), 
+			static_cast<int>(textBox.height), DARKGRAY);
 	}
 
 	//Draw the name being typed out
-	DrawText(name, (int)textBox.x + 5, (int)textBox.y + 8, 40, MAROON);
+	DrawText(name, static_cast<int>(textBox.x) + 5, static_cast<int>(textBox.y) + 8, 40, MAROON);
 
 	//Draw the text explaining how many characters are used
 	DrawText(TextFormat("INPUT CHARS: %i/%i", letterCount, 8), 600, 600, 20, YELLOW);
@@ -157,7 +164,7 @@ void Endscreen::RenderNameInputScreen() const noexcept
 			// Draw blinking underscore char
 			if (((framesCounter / 20) % 2) == 0)
 			{
-				DrawText("_", (int)textBox.x + 8 + MeasureText(name, 40), (int)textBox.y + 12, 40, MAROON);
+				DrawText("_", static_cast<int>(textBox.x) + 8 + MeasureText(name, 40), static_cast<int>(textBox.y) + 12, 40, MAROON);
 			}
 
 		}
@@ -191,40 +198,3 @@ void Endscreen::RenderHighscoreScreen()const noexcept
 	}
 }
 
-void Endscreen::LoadLeaderboard()
-{
-	// CLEAR LEADERBOARD
-
-	// OPEN FILE
-
-	// READ DATA
-
-	// WRITE DATA ONTO LEADERBOARD
-
-	//CLOSE FILE
-}
-
-void Endscreen::SaveLeaderboard()
-{
-	// SAVE LEADERBOARD AS ARRAY
-
-	// OPEN FILE
-	/*std::fstream file;
-
-	file.open("Leaderboard");
-
-	if (!file)
-	{
-		std::cout << "file not found \n";
-
-	}
-	else
-	{
-		std::cout << "file found \n";
-	}*/
-	// CLEAR FILE
-
-	// WRITE ARRAY DATA INTO FILE
-
-	// CLOSE FILE
-}

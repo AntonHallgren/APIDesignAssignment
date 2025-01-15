@@ -42,9 +42,9 @@ bool Gameplay::GetActive() const noexcept
 void Gameplay::Start() noexcept
 {
 	// creating walls 
-	float window_width = (float)GetScreenWidth();
-	float window_height = (float)GetScreenHeight();
-	float wall_distance = window_width / (wallCount + 1);
+	const float window_width = static_cast<float>(GetScreenWidth());
+	const float window_height = static_cast<float>(GetScreenHeight());
+	const float wall_distance = window_width / (wallCount + 1);
 	for (int i = 0; i < wallCount; i++)
 	{
 		Walls.emplace_back(Wall({ wall_distance * (i + 1) ,window_height - 250 }));
@@ -119,9 +119,9 @@ void Gameplay::UpdateEntities() noexcept
 	background.Update( -player.x_pos / 15);//Simplified
 
 	//UPDATE PROJECTILE
-	for (int i = 0; i < Projectiles.size(); i++)
+	for (Projectile& proj : Projectiles)
 	{
-		Projectiles[i].Update();
+		proj.Update();
 	}
 }
 
@@ -180,7 +180,7 @@ void Gameplay::FireProjectiles() noexcept//TODO should perhaps be two functions
 	//Player
 	if (IsKeyPressed(KEY_SPACE))
 	{
-		float window_height = (float)GetScreenHeight();
+		const float window_height = static_cast<float>(GetScreenHeight());
 		Projectiles.emplace_back(Projectile{ {player.x_pos, window_height - 130}, true });//TODO can I get the position completely from player instead?
 	}
 	//Alien
@@ -200,9 +200,9 @@ void Gameplay::FireProjectiles() noexcept//TODO should perhaps be two functions
 
 void Gameplay::RemoveInactiveEntities() noexcept
 {
-	Projectiles.erase(std::remove_if(Projectiles.begin(), Projectiles.end(), [](Projectile p) { return !p.GetActive(); }), Projectiles.end());
-	Aliens.erase(std::remove_if(Aliens.begin(), Aliens.end(), [](Alien a) { return !a.GetActive(); }), Aliens.end());
-	Walls.erase(std::remove_if(Walls.begin(), Walls.end(), [](Wall w) { return !w.GetActive(); }), Walls.end());
+	Projectiles.erase(std::remove_if(Projectiles.begin(), Projectiles.end(), [](Projectile p) noexcept { return !p.GetActive(); }), Projectiles.end());
+	Aliens.erase(std::remove_if(Aliens.begin(), Aliens.end(), [](Alien a) noexcept { return !a.GetActive(); }), Aliens.end());
+	Walls.erase(std::remove_if(Walls.begin(), Walls.end(), [](Wall w) noexcept { return !w.GetActive(); }), Walls.end());
 }
 
 

@@ -2,8 +2,10 @@
 
 Star::Star()noexcept
 {
-	initPosition = { (float)GetRandomValue(-150, GetScreenWidth() + 150) ,(float)GetRandomValue(0, GetScreenHeight()) };
-	size = (float)GetRandomValue(1, 4) / 2;
+	initPosition = { 
+		static_cast<float>(GetRandomValue(-150, GetScreenWidth() + 150)) ,
+		static_cast<float>(GetRandomValue(0, GetScreenHeight())) };
+	size = static_cast<float>(GetRandomValue(1, 4)) / 2.0f;
 }
 
 //BACKGROUND
@@ -16,7 +18,7 @@ void Star::Update(float starOffset) noexcept
 
 void Star::Render() const noexcept
 {
-	DrawCircle((int)position.x, (int)position.y, size, color);
+	DrawCircle(static_cast<int>(position.x), static_cast<int>(position.y), size, color);
 }
 
 

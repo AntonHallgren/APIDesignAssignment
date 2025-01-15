@@ -8,7 +8,7 @@
 class Gameplay
 {
 	// Score
-	int score;
+	int score = 0;
 	//Aliens shooting
 	float shootTimer = 0;
 
@@ -43,7 +43,7 @@ private:
 	void SpawnAliens() noexcept;
 
 
-	void UpdateEntities() noexcept;
+	void UpdateEntities();
 
 	void CheckCollisions() noexcept;
 	void ProjectileWallCollision(Projectile& proj) noexcept;

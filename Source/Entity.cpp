@@ -1,13 +1,11 @@
 #include "Entities.h"
 // MATH FUNCTIONS
-float lineLength(Vector2 A, Vector2 B) //Uses pythagoras to calculate the length of a line
+float lineLength(Vector2 A, Vector2 B) noexcept//Uses pythagoras to calculate the length of a line
 {
-	float length = sqrtf((float)(pow(B.x - A.x, 2) + pow(B.y - A.y, 2)));
-
-	return length;
+	return sqrtf((B.x - A.x) * (B.x - A.x) + (B.y - A.y) * (B.y - A.y));
 }
 
-bool pointInCircle(Vector2 circlePos, float radius, Vector2 point) // Uses pythagoras to calculate if a point is within a circle or not
+bool pointInCircle(Vector2 circlePos, float radius, Vector2 point) noexcept // Uses pythagoras to calculate if a point is within a circle or not
 {
 	float distanceToCentre = lineLength(circlePos, point);
 
@@ -22,7 +20,7 @@ bool pointInCircle(Vector2 circlePos, float radius, Vector2 point) // Uses pytha
 }
 
 
-bool CheckCollision(Vector2 circlePos, float circleRadius, Vector2 lineStart, Vector2 lineEnd)//TODO read again, make sure if it is clean
+bool CheckCollision(Vector2 circlePos, float circleRadius, Vector2 lineStart, Vector2 lineEnd) noexcept//TODO read again, make sure if it is clean
 {
 	// our objective is to calculate the distance between the closest point on the line to the centre of the circle, 
 	// and determine if it is shorter than the radius.
