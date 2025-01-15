@@ -3,12 +3,7 @@
 #include <vector>
 #include "Resources.h"
 #include <string>
-#include "Entities.h"
-#include "Player.h"
-#include "Projectile.h"
-#include "Backround.h"
-#include "Wall.h"
-#include "Alien.h"
+#include "Gameplay.h"
 
 
 enum struct State
@@ -27,77 +22,32 @@ struct PlayerData
 
 
 
-
-
-
-struct Game
+class Game
 {
+	Gameplay gameplay;
+
 	// Gamestate
-	State gameState = {};
+	State gameState = State::STARTSCREEN;
 
 	// Score
-	int score;
+	int score;//TODO placed it in Gameplay, make sure they are connected
 
-	// for later, make a file where you can adjust the number of walls (config file) 
-	int wallCount = 5;
-
-	//Aliens shooting
-	float shootTimer = 0;
 
 	//Aliens stuff? (idk cause liv wrote this)
-	Rectangle rec = { 0, 0 ,0 ,0 }; 
+	//Rectangle rec = { 0, 0 ,0 ,0 }; 
 
-	int formationWidth = 8;
-	int formationHeight = 5;
-	int alienSpacing = 80;
-	int formationX = 100;
-	int formationY = 50;
 
 	bool newHighScore = false;
-	
-
-	void Start();
-	void End();
-
-	void Continue();
-	//void Launch();
-
-	void Update();
-	void Render();
-
-	void SpawnAliens();
-
-	bool CheckCollision(Vector2 circlePos, float circleRadius, Vector2 lineTop, Vector2 lineBottom);
-
-	bool CheckNewHighScore();
-
-	void InsertNewHighScore(std::string name);
-
-	void LoadLeaderboard();
-	void SaveLeaderboard();
 
 
 	// Entity Storage and Resources
-	Resources resources;
-
-	Player player;
-
-	std::vector<Projectile> Projectiles;
-
-	std::vector<Wall> Walls;
-
-	std::vector<Alien> Aliens;
-
 	std::vector<PlayerData> Leaderboard = { {"Player 1", 500}, {"Player 2", 400}, {"Player 3", 300}, {"Player 4", 200}, {"Player 5", 100} };
 	
-	Background background{ 0 };
 
-
-
-	Vector2 playerPos;
-	Vector2 alienPos; 
-	Vector2 cornerPos;
-	float offset;
+	//Vector2 playerPos;
+	//Vector2 alienPos;
+	//Vector2 cornerPos;
+	//float offset;
 
 
 
@@ -109,5 +59,26 @@ struct Game
 	bool mouseOnText = false;
 
 	int framesCounter = 0;
+public:
+	void Update();
+	void Render();
+
+private:/*
+	void Start();
+	void End();*/
+
+	void ChangeState(State newState);
+
+
+	void Continue();
+	//void Launch();
+
+	bool CheckNewHighScore();
+
+	void InsertNewHighScore(std::string name);
+
+	void LoadLeaderboard();
+	void SaveLeaderboard();
+
 
 };
