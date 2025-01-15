@@ -1,7 +1,12 @@
 #include "Alien.h"
 
 
-void Alien::Update()
+Alien::Alien(Vector2 startPosition) noexcept
+{
+	position = startPosition;
+}
+
+void Alien::Update() noexcept
 {
 	int window_width = GetScreenWidth();
 
@@ -27,13 +32,23 @@ void Alien::Update()
 	}
 }
 
-void Alien::Render(const TextureRAII& texture)
+bool Alien::GetActive() const noexcept
 {
-	//DrawRectangle((int)position.x - 25, (int)position.y, 30, 30, RED);
-	//DrawCircle((int)position.x, (int)position.y, radius, GREEN);
+	return active;
+}
 
+Vector2 Alien::GetPosition() const noexcept
+{
+	return position;
+}
 
+void Alien::GetHit() noexcept
+{
+	active = false;
+}
 
+void Alien::Render(const TextureRAII& texture) const noexcept
+{
 	DrawTexturePro(texture.Get(),
 		{
 			0,

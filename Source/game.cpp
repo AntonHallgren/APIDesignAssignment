@@ -103,12 +103,10 @@ void Game::Update()//TODO too long, split into smaller
 		//Update Player
 		player.Update();
 		
-		//Update Aliens and Check if they are past player
-		for (int i = 0; i < Aliens.size(); i++)//TODO use ranged for instead
+		for (Alien& alien : Aliens)
 		{
-			Aliens[i].Update(); 
-
-			if (Aliens[i].position.y > GetScreenHeight() - player.player_base_height)
+			alien.Update();
+			if (alien.GetPosition().y > GetScreenHeight() - player.player_base_height)
 			{
 				End();
 			}
@@ -145,15 +143,12 @@ void Game::Update()//TODO too long, split into smaller
 		{
 			if (Projectiles[i].type == EntityType::PLAYER_PROJECTILE)
 			{
-				for (int a = 0; a < Aliens.size(); a++)
+				for (Alien& alien : Aliens)
 				{
-					if (CheckCollision(Aliens[a].position, Aliens[a].radius, Projectiles[i].lineStart, Projectiles[i].lineEnd))
+					if (CheckCollision(alien.GetPosition(), ALIEN_RADIUS, Projectiles[i].lineStart, Projectiles[i].lineEnd))
 					{
-						// Kill!
-						std::cout << "Hit! \n";
-						// Set them as inactive, will be killed later
 						Projectiles[i].active = false;
-						Aliens[a].active = false;
+						alien.GetHit();
 						score += 100;
 					}
 				}
@@ -208,7 +203,7 @@ void Game::Update()//TODO too long, split into smaller
 			}
 
 			Projectile newProjectile;
-			newProjectile.position = Aliens[randomAlienIndex].position;
+			newProjectile.position = Aliens[randomAlienIndex].GetPosition();
 			newProjectile.position.y += 40;
 			newProjectile.speed = -15;
 			newProjectile.type = EntityType::ENEMY_PROJECTILE;
@@ -227,14 +222,7 @@ void Game::Update()//TODO too long, split into smaller
 				i--;
 			}
 		}
-		for (int i = 0; i < Aliens.size(); i++)
-		{
-			if (Aliens[i].active == false)
-			{
-				Aliens.erase(Aliens.begin() + i);
-				i--;
-			}
-		}
+		Aliens.erase(std::remove_if(Aliens.begin(), Aliens.end(), [](Alien val) { return !val.GetActive(); }), Aliens.end());
 		Walls.erase(std::remove_if(Walls.begin(), Walls.end(), [](Wall val) { return !val.GetActive(); }), Walls.end());
 			
 		
@@ -462,13 +450,7 @@ void Game::SpawnAliens()//TODO can clean this up a bit
 {
 	for (int row = 0; row < formationHeight; row++) {
 		for (int col = 0; col < formationWidth; col++) {
-			Alien newAlien = Alien();
-			newAlien.active = true;
-			newAlien.position.x = formationX + 450 + (col * alienSpacing);
-			newAlien.position.y = formationY + (row * alienSpacing);
-			Aliens.push_back(newAlien);
-			std::cout << "Find Alien -X:" << newAlien.position.x << std::endl;
-			std::cout << "Find Alien -Y:" << newAlien.position.y << std::endl;
+			Aliens.emplace_back(Alien({ (float)formationX + 450 + (col * alienSpacing),  (float)formationY + (row * alienSpacing) }));
 		}
 	}
 
