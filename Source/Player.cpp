@@ -64,6 +64,11 @@ float Player::GetXPos() const noexcept
 	return x_pos;
 }
 
+int Player::GetActiveTexture() const noexcept
+{
+	return activeTexture;
+}
+
 void Player::Render(const TextureRAII& texture) const noexcept //TODO reimplement animation on player
 {
 	DrawTexturePro(texture.Get(),

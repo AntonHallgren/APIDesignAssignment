@@ -19,7 +19,7 @@ void Gameplay::Render() const noexcept
 	DrawText(TextFormat("Lives: %i", player.GetLives()), 50, 70, 40, YELLOW);
 	//player rendering 
 	//player.Render(resources.shipTextures[player.activeTexture]);//Old version
-	player.Render(resources.ship1);//TODO recreate animation system
+	player.Render(resources.ship[player.GetActiveTexture()]);//TODO recreate animation system
 	for (const Projectile& proj : Projectiles)
 	{
 		proj.Render(resources.laserTexture);

@@ -26,4 +26,6 @@ public:
 
 	float GetXPos() const noexcept;
 
+	int GetActiveTexture() const noexcept;
+
 };

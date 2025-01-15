@@ -8,7 +8,7 @@ class Projectile
 	int speed = 15;
 	bool active = true;
 	//EntityType type;
-	bool playerProjectile;//TODO change back to enum
+	bool playerProjectile;
 
 public:
 	Projectile(Vector2 startPosition, EntityType type) noexcept;
