@@ -110,7 +110,7 @@ void Game::Update()//TODO too long, split into smaller
 		player.Update();
 		
 		//Update Aliens and Check if they are past player
-		for (int i = 0; i < Aliens.size(); i++)
+		for (int i = 0; i < Aliens.size(); i++)//TODO use ranged for instead
 		{
 			Aliens[i].Update(); 
 
@@ -121,7 +121,7 @@ void Game::Update()//TODO too long, split into smaller
 		}
 
 		//End game if player dies
-		if (player.lives < 1)
+		if (player.GetLives() < 1)
 		{
 			End();
 		}
@@ -363,7 +363,7 @@ void Game::Render()
 
 		//DrawText("GAMEPLAY", 50, 30, 40, YELLOW);
 		DrawText(TextFormat("Score: %i", score), 50, 20, 40, YELLOW);
-		DrawText(TextFormat("Lives: %i", player.lives), 50, 70, 40, YELLOW);
+		DrawText(TextFormat("Lives: %i", player.GetLives()), 50, 70, 40, YELLOW);
 
 		//player rendering 
 		//player.Render(resources.shipTextures[player.activeTexture]);//Old version

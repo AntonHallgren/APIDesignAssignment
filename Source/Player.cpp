@@ -52,6 +52,11 @@ void Player::Update()
 
 }
 
+int Player::GetLives()
+{
+	return lives;//TODO maybe "lives" should not be held by the player in the first place?
+}
+
 void Player::Render(const TextureRAII& texture) //TODO reimplement animation on player
 {
 	float window_height = GetScreenHeight();

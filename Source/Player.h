@@ -2,10 +2,9 @@
 #include "Entities.h"
 
 
-struct Player
+class Player
 {
-public:
-
+public://TODO remove public and handle the consecvenses. 
 	float x_pos = 0;
 	float speed = 7;
 	float player_base_height = 70.0f;
@@ -15,10 +14,13 @@ public:
 	int activeTexture = 0;
 	float timer = 0;
 
-	EntityType type = EntityType::PLAYER;
+	//EntityType type = EntityType::PLAYER;//I believe this is unused and can be removed from all entities. 
 
+public:
 	Player();
 	void Render(const TextureRAII& texture);
 	void Update();
+
+	int GetLives();
 
 };

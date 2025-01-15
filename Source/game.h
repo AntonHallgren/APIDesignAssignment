@@ -5,6 +5,10 @@
 #include <string>
 #include "Entities.h"
 #include "Player.h"
+#include "Projectile.h"
+#include "Backround.h"
+#include "Wall.h"
+#include "Alien.h"
 
 
 enum struct State
