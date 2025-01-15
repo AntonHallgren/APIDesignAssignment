@@ -1,6 +1,7 @@
 #pragma once
 #include "raylib.h"
 #include "Resources.h"
+#include <raymath.h>
 
 
 //I should completley separate these

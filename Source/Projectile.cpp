@@ -1,22 +1,48 @@
 #include "Projectile.h"
 
 
+Projectile::Projectile(Vector2 startPosition, bool isPlayerProjectile)
+{
+	position = startPosition;
+	playerProjectile = isPlayerProjectile;
+	speed = playerProjectile ? 15 : -15;
+}
+
 void Projectile::Update()
 {
 	position.y -= speed;
-
-	// UPDATE LINE POSITION
-	lineStart.y = position.y - 15;//TODO hardcoded value
-	lineEnd.y = position.y + 15;
-
-	lineStart.x = position.x;
-	lineEnd.x = position.x;
 
 	if (position.y < 0 || position.y > 1500)
 	{
 		active = false;
 	}
 }
+
+void Projectile::Deactive()
+{
+	active = false;
+}
+
+bool Projectile::GetActive()
+{
+	return active;
+}
+
+bool Projectile::IsPlayerProjectile()
+{
+	return playerProjectile;
+}
+
+Vector2 Projectile::GetLineStart()
+{
+	return Vector2Add(position, { 0, -15 });
+}
+
+Vector2 Projectile::GetLineEnd()
+{
+	return Vector2Add(position, { 0, 15 });
+}
+
 
 void Projectile::Render(const TextureRAII& texture)
 {

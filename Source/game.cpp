@@ -139,15 +139,15 @@ void Game::Update()//TODO too long, split into smaller
 		}
 
 		//CHECK ALL COLLISONS HERE
-		for (int i = 0; i < Projectiles.size(); i++)
+		for (Projectile& proj : Projectiles)
 		{
-			if (Projectiles[i].type == EntityType::PLAYER_PROJECTILE)
+			if (proj.IsPlayerProjectile())
 			{
 				for (Alien& alien : Aliens)
 				{
-					if (CheckCollision(alien.GetPosition(), ALIEN_RADIUS, Projectiles[i].lineStart, Projectiles[i].lineEnd))
+					if (CheckCollision(alien.GetPosition(), ALIEN_RADIUS, proj.GetLineStart(), proj.GetLineStart()))
 					{
-						Projectiles[i].active = false;
+						proj.Deactive();
 						alien.GetHit();
 						score += 100;
 					}
@@ -157,12 +157,11 @@ void Game::Update()//TODO too long, split into smaller
 			//ENEMY PROJECTILES HERE
 			for (int i = 0; i < Projectiles.size(); i++)
 			{
-				if (Projectiles[i].type == EntityType::ENEMY_PROJECTILE)
+				if (!proj.IsPlayerProjectile())
 				{
-					if (CheckCollision({player.x_pos, GetScreenHeight() - player.player_base_height }, player.radius, Projectiles[i].lineStart, Projectiles[i].lineEnd))
+					if (CheckCollision({player.x_pos, GetScreenHeight() - player.player_base_height }, player.radius, proj.GetLineStart(), proj.GetLineStart()))
 					{
-						std::cout << "dead!\n"; 
-						Projectiles[i].active = false; 
+						proj.Deactive();
 						player.lives -= 1; 
 					}
 				}
@@ -171,10 +170,10 @@ void Game::Update()//TODO too long, split into smaller
 
 			for (Wall& wall : Walls)
 			{
-				if (CheckCollision(wall.GetPosition(), WALL_RADIUS, Projectiles[i].lineStart, Projectiles[i].lineEnd))
+				if (CheckCollision(wall.GetPosition(), WALL_RADIUS, proj.GetLineStart(), proj.GetLineStart()))
 				{
 					// Set them as inactive, will be killed later
-					Projectiles[i].active = false;
+					proj.Deactive();
 					wall.LoseHealth();
 				}
 			}
@@ -184,11 +183,7 @@ void Game::Update()//TODO too long, split into smaller
 		if (IsKeyPressed(KEY_SPACE))
 		{
 			float window_height = (float)GetScreenHeight();
-			Projectile newProjectile;
-			newProjectile.position.x = player.x_pos;
-			newProjectile.position.y = window_height - 130;
-			newProjectile.type = EntityType::PLAYER_PROJECTILE;
-			Projectiles.push_back(newProjectile);
+			Projectiles.emplace_back(Projectile{ {player.x_pos, window_height - 130}, true });//TODO can I get the position completely from player instead?
 		}
 
 		//Aliens Shooting
@@ -201,29 +196,13 @@ void Game::Update()//TODO too long, split into smaller
 			{
 				randomAlienIndex = rand() % Aliens.size();
 			}
-
-			Projectile newProjectile;
-			newProjectile.position = Aliens[randomAlienIndex].GetPosition();
-			newProjectile.position.y += 40;
-			newProjectile.speed = -15;
-			newProjectile.type = EntityType::ENEMY_PROJECTILE;
-			Projectiles.push_back(newProjectile);
+			Projectiles.emplace_back(Projectile{ Vector2Add(Aliens[randomAlienIndex].GetPosition(), Vector2{0, 40}), false });
 			shootTimer = 0;
 		}
 
-		// REMOVE INACTIVE/DEAD ENITITIES
-		for (int i = 0; i < Projectiles.size(); i++)
-		{
-			if (Projectiles[i].active == false)
-			{
-				Projectiles.erase(Projectiles.begin() + i);
-				// Prevent the loop from skipping an instance because of index changes, since all insances after
-				// the killed objects are moved down in index. This is the same for all loops with similar function
-				i--;
-			}
-		}
-		Aliens.erase(std::remove_if(Aliens.begin(), Aliens.end(), [](Alien val) { return !val.GetActive(); }), Aliens.end());
-		Walls.erase(std::remove_if(Walls.begin(), Walls.end(), [](Wall val) { return !val.GetActive(); }), Walls.end());
+		Projectiles.erase(std::remove_if(Projectiles.begin(), Projectiles.end(), [](Projectile p) { return !p.GetActive(); }), Projectiles.end());
+		Aliens.erase(std::remove_if(Aliens.begin(), Aliens.end(), [](Alien a) { return !a.GetActive(); }), Aliens.end());
+		Walls.erase(std::remove_if(Walls.begin(), Walls.end(), [](Wall w) { return !w.GetActive(); }), Walls.end());
 			
 		
 
