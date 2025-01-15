@@ -43,7 +43,7 @@ private:
 	void SpawnAliens() noexcept;
 
 
-	void UpdateEntities();
+	void UpdateEntities() noexcept;
 
 	void CheckCollisions() noexcept;
 	void ProjectileWallCollision(Projectile& proj) noexcept;

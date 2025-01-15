@@ -98,7 +98,7 @@ void Gameplay::UpdateEntities() noexcept
 	for (Alien& alien : Aliens)
 	{
 		alien.Update();
-		if (alien.GetPosition().y > GetScreenHeight() - player.player_base_height)
+		if (alien.GetPosition().y > GetScreenHeight() - PLAYER_BASE_HEIGHT)
 		{
 			End();
 		}
@@ -116,7 +116,7 @@ void Gameplay::UpdateEntities() noexcept
 		SpawnAliens();
 	}
 
-	background.Update( -player.x_pos / 15);//Simplified
+	background.Update( -player.GetXPos() / 15);//Simplified
 
 	//UPDATE PROJECTILE
 	for (Projectile& proj : Projectiles)
@@ -155,10 +155,10 @@ void Gameplay::ProjectileWallCollision(Projectile& proj) noexcept
 
 void Gameplay::ProjectilePlayerCollision(Projectile& proj) noexcept
 {
-	if (CheckCollision({ player.x_pos, GetScreenHeight() - player.player_base_height }, player.radius, proj.GetLineStart(), proj.GetLineStart()))
+	if (CheckCollision({ player.GetXPos(), GetScreenHeight() - PLAYER_BASE_HEIGHT}, PLAYER_RADIUS, proj.GetLineStart(), proj.GetLineStart()))
 	{
 		proj.Deactive();
-		player.lives -= 1;
+		player.TakeDamage();
 	}
 }
 
@@ -181,7 +181,7 @@ void Gameplay::FireProjectiles() noexcept//TODO should perhaps be two functions
 	if (IsKeyPressed(KEY_SPACE))
 	{
 		const float window_height = static_cast<float>(GetScreenHeight());
-		Projectiles.emplace_back(Projectile{ {player.x_pos, window_height - 130}, true });//TODO can I get the position completely from player instead?
+		Projectiles.emplace_back(Projectile{ {player.GetXPos(), window_height - 130}, true });//TODO can I get the position completely from player instead?
 	}
 	//Alien
 	shootTimer += 1;
@@ -194,7 +194,9 @@ void Gameplay::FireProjectiles() noexcept//TODO should perhaps be two functions
 	{
 		randomAlienIndex = rand() % Aliens.size();
 	}
-	Projectiles.emplace_back(Projectile{ Vector2Add(Aliens[randomAlienIndex].GetPosition(), Vector2{0, 40}), false });
+	Vector2 p = Aliens[randomAlienIndex].GetPosition();
+	p.y += 40;
+	Projectiles.emplace_back(Projectile{ p, false });
 	shootTimer = 0;
 }
 

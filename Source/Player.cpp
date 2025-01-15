@@ -5,14 +5,11 @@
 
 Player::Player() noexcept
 {
-	float window_width = (float)GetScreenWidth();
-	x_pos = window_width / 2;
+	x_pos = GetScreenWidth() / 2.0f;
 }
 
 void Player::Update() noexcept
 {
-
-	//Movement
 	direction = 0;
 	if (IsKeyDown(KEY_LEFT))
 	{
@@ -25,13 +22,13 @@ void Player::Update() noexcept
 
 	x_pos += speed * direction;//TODO no time dependancy? make sure if that is ok
 
-	if (x_pos < 0 + radius)
+	if (x_pos < PLAYER_RADIUS)
 	{
-		x_pos = 0 + radius;
+		x_pos = PLAYER_RADIUS;
 	}
-	else if (x_pos > GetScreenWidth() - radius)
+	else if (x_pos > GetScreenWidth() - PLAYER_RADIUS)
 	{
-		x_pos = GetScreenWidth() - radius;
+		x_pos = GetScreenWidth() - PLAYER_RADIUS;
 	}
 
 
@@ -52,15 +49,23 @@ void Player::Update() noexcept
 
 }
 
+void Player::TakeDamage()noexcept
+{
+	lives--;
+}
+
 int Player::GetLives() const noexcept
 {
 	return lives;//TODO maybe "lives" should not be held by the player in the first place?
 }
 
+float Player::GetXPos() const noexcept
+{
+	return x_pos;
+}
+
 void Player::Render(const TextureRAII& texture) const noexcept //TODO reimplement animation on player
 {
-	float window_height = (float)GetScreenHeight();
-
 	DrawTexturePro(texture.Get(),
 		{
 			0,
@@ -69,7 +74,7 @@ void Player::Render(const TextureRAII& texture) const noexcept //TODO reimplemen
 			352,
 		},
 		{
-			x_pos, window_height - player_base_height,
+			x_pos, GetScreenHeight() - PLAYER_BASE_HEIGHT,
 			100,
 			100,
 		}, { 50, 50 },
