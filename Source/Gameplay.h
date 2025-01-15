@@ -41,4 +41,16 @@ private:
 	void End();
 
 	void SpawnAliens();
+
+
+	void UpdateEntities();
+
+	void CheckCollisions();
+	void ProjectileWallCollision(Projectile& proj);
+	void ProjectilePlayerCollision(Projectile& proj);
+	void ProjectileAlienCollision(Projectile& proj);
+
+
+	void FireProjectiles();
+	void RemoveInactiveEntities();
 };

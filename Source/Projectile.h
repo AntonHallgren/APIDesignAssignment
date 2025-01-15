@@ -14,9 +14,9 @@ public:
 	Projectile(Vector2 startPosition, bool isPlayerProjectile);
 	void Update();
 	void Deactive();
-	bool GetActive();
-	bool IsPlayerProjectile();
-	Vector2 GetLineStart();
-	Vector2 GetLineEnd();
-	void Render(const TextureRAII& texture);
+	bool GetActive() const noexcept;
+	bool IsPlayerProjectile() const noexcept;
+	Vector2 GetLineStart() const noexcept;
+	Vector2 GetLineEnd() const noexcept;
+	void Render(const TextureRAII& texture) const noexcept;
 };

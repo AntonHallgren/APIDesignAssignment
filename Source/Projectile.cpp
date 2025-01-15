@@ -23,28 +23,28 @@ void Projectile::Deactive()
 	active = false;
 }
 
-bool Projectile::GetActive()
+bool Projectile::GetActive() const noexcept
 {
 	return active;
 }
 
-bool Projectile::IsPlayerProjectile()
+bool Projectile::IsPlayerProjectile() const noexcept
 {
 	return playerProjectile;
 }
 
-Vector2 Projectile::GetLineStart()
+Vector2 Projectile::GetLineStart() const noexcept
 {
 	return Vector2Add(position, { 0, -15 });
 }
 
-Vector2 Projectile::GetLineEnd()
+Vector2 Projectile::GetLineEnd() const noexcept
 {
 	return Vector2Add(position, { 0, 15 });
 }
 
 
-void Projectile::Render(const TextureRAII& texture)
+void Projectile::Render(const TextureRAII& texture) const noexcept
 {
 	//DrawCircle((int)position.x, (int)position.y, 10, RED);
 	DrawTexturePro(texture.Get(),
