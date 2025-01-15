@@ -25,10 +25,6 @@ void Game::ChangeState(State newState) noexcept
 	default:
 		break;
 	}
-
-
-
-
 }
 
 void Game::Update() noexcept
@@ -57,7 +53,6 @@ void Game::Update() noexcept
 		}
 		break;
 	default:
-		//SHOULD NOT HAPPEN
 		break;
 	}
 }

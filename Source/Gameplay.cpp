@@ -1,7 +1,7 @@
 #include "Gameplay.hpp"
 
 void Gameplay::Update() noexcept
-{//Code
+{
 	if (IsKeyReleased(KEY_Q))
 	{
 		End();
