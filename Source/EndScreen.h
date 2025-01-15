@@ -30,7 +30,7 @@ class Endscreen
 	//TEXTBOX ENTER
 	char name[9 + 1] = "\0";      //One extra space required for null terminator char '\0'
 	int letterCount = 0;
-	int framesCounter = 0;
+	int framesCounter = 0;//for blinking underscore when inputting name
 
 
 public:
@@ -44,6 +44,17 @@ private:
 	bool CheckNewHighScore();
 
 	void InsertNewHighScore(std::string name);
+
+	void UpdateNameInputScreen();
+
+	void ReadKeyboard();
+
+
+	void RenderNameInputScreen();
+	void RenderHighscoreScreen();
+
+
+
 
 	void LoadLeaderboard();//TODO neighter of these seems fully implemented
 	void SaveLeaderboard();

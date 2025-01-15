@@ -10,142 +10,29 @@ void Endscreen::Start(int newScore)
 
 void Endscreen::Update()
 {
-	if (IsKeyReleased(KEY_ENTER) && !newHighScore)
+	if (newHighScore)
+	{
+		UpdateNameInputScreen();
+		return;
+	}
+
+	if (IsKeyReleased(KEY_ENTER))
 	{
 		SaveLeaderboard();
 		active = false;
-	}
-
-	if (newHighScore)
-	{
-		if (CheckCollisionPointRec(GetMousePosition(), textBox)) mouseOnText = true;
-		else mouseOnText = false;
-
-		if (mouseOnText)
-		{
-			// Set the window's cursor to the I-Beam
-			SetMouseCursor(MOUSE_CURSOR_IBEAM);
-
-			// Get char pressed on the queue
-			int key = GetCharPressed();
-
-			// Check if more characters have been pressed on the same frame
-			while (key > 0)
-			{
-				// NOTE: Only allow keys in range [32..125]
-				if ((key >= 32) && (key <= 125) && (letterCount < 9))
-				{
-					name[letterCount] = (char)key;
-					name[letterCount + 1] = '\0'; // Add null terminator at the end of the string.
-					letterCount++;
-				}
-
-				key = GetCharPressed();  // Check next character in the queue
-			}
-
-			//Remove chars 
-			if (IsKeyPressed(KEY_BACKSPACE))
-			{
-				letterCount--;
-				if (letterCount < 0) letterCount = 0;
-				name[letterCount] = '\0';
-			}
-		}
-		else SetMouseCursor(MOUSE_CURSOR_DEFAULT);
-
-		if (mouseOnText)
-		{
-			framesCounter++;
-		}
-		else
-		{
-			framesCounter = 0;
-		}
-
-		// If the name is right legth and enter is pressed, exit screen by setting highscore to false and add 
-		// name + score to scoreboard
-		if (letterCount > 0 && letterCount < 9 && IsKeyReleased(KEY_ENTER))
-		{
-			std::string nameEntry(name);
-
-			InsertNewHighScore(nameEntry);
-
-			newHighScore = false;
-		}
 	}
 }
 
 void Endscreen::Render()
 {
-
 	if (newHighScore)
 	{
-		DrawText("NEW HIGHSCORE!", 600, 300, 60, YELLOW);
-
-
-
-		// BELOW CODE IS FOR NAME INPUT RENDER
-		DrawText("PLACE MOUSE OVER INPUT BOX!", 600, 400, 20, YELLOW);
-
-		DrawRectangleRec(textBox, LIGHTGRAY);
-		if (mouseOnText)
-		{
-			// HOVER CONFIRMIATION
-			DrawRectangleLines((int)textBox.x, (int)textBox.y, (int)textBox.width, (int)textBox.height, RED);
-		}
-		else
-		{
-			DrawRectangleLines((int)textBox.x, (int)textBox.y, (int)textBox.width, (int)textBox.height, DARKGRAY);
-		}
-
-		//Draw the name being typed out
-		DrawText(name, (int)textBox.x + 5, (int)textBox.y + 8, 40, MAROON);
-
-		//Draw the text explaining how many characters are used
-		DrawText(TextFormat("INPUT CHARS: %i/%i", letterCount, 8), 600, 600, 20, YELLOW);
-
-		if (mouseOnText)
-		{
-			if (letterCount < 9)
-			{
-				// Draw blinking underscore char
-				if (((framesCounter / 20) % 2) == 0)
-				{
-					DrawText("_", (int)textBox.x + 8 + MeasureText(name, 40), (int)textBox.y + 12, 40, MAROON);
-				}
-
-			}
-			else
-			{
-				//Name needs to be shorter
-				DrawText("Press BACKSPACE to delete chars...", 600, 650, 20, YELLOW);
-			}
-
-		}
-
-		// Explain how to continue when name is input
-		if (letterCount > 0 && letterCount < 9)
-		{
-			DrawText("PRESS ENTER TO CONTINUE", 600, 800, 40, YELLOW);
-		}
-
+		RenderNameInputScreen();
 	}
-	else {
-		// If no highscore or name is entered, show scoreboard and call it a day
-		DrawText("PRESS ENTER TO CONTINUE", 600, 200, 40, YELLOW);
-
-		DrawText("LEADERBOARD", 50, 100, 40, YELLOW);
-
-		for (int i = 0; i < Leaderboard.size(); i++)
-		{
-			char* tempNameDisplay = Leaderboard[i].name.data();
-			DrawText(tempNameDisplay, 50, 140 + (i * 40), 40, YELLOW);
-			DrawText(TextFormat("%i", Leaderboard[i].score), 350, 140 + (i * 40), 40, YELLOW);
-		}
+	else 
+	{
+		RenderHighscoreScreen();
 	}
-
-
-
 }
 
 bool Endscreen::GetActive()
@@ -155,7 +42,7 @@ bool Endscreen::GetActive()
 
 bool Endscreen::CheckNewHighScore()
 {
-	if (score > Leaderboard[4].score)//TODO hmm, hardcoded list length?
+	if (score > Leaderboard.back().score)
 	{
 		return true;
 	}
@@ -165,11 +52,9 @@ bool Endscreen::CheckNewHighScore()
 
 void Endscreen::InsertNewHighScore(std::string name)
 {
-	PlayerData newData;
-	newData.name = name;
-	newData.score = score;
+	PlayerData newData{ name, score };
 
-	for (int i = 0; i < Leaderboard.size(); i++)
+	for (int i = 0; i < Leaderboard.size(); i++)//TODO maybe there is a better way to do this
 	{
 		if (newData.score > Leaderboard[i].score)
 		{
@@ -181,6 +66,127 @@ void Endscreen::InsertNewHighScore(std::string name)
 			i = Leaderboard.size();
 
 		}
+	}
+}
+
+void Endscreen::UpdateNameInputScreen()
+{
+	mouseOnText = CheckCollisionPointRec(GetMousePosition(), textBox);
+	if (mouseOnText)
+	{
+		// Set the window's cursor to the I-Beam
+		SetMouseCursor(MOUSE_CURSOR_IBEAM);
+		ReadKeyboard();
+		framesCounter++;
+	}
+	else 
+	{
+		SetMouseCursor(MOUSE_CURSOR_DEFAULT);
+		framesCounter = 0;
+	}
+
+	// If the name is right legth and enter is pressed, exit screen by setting highscore to false and add 
+	// name + score to scoreboard
+	if (letterCount > 0 && letterCount < 9 && IsKeyReleased(KEY_ENTER))
+	{
+		std::string nameEntry(name);
+
+		InsertNewHighScore(nameEntry);
+
+		newHighScore = false;
+	}
+}
+
+void Endscreen::ReadKeyboard()
+{
+	// Get char pressed on the queue
+	int key = GetCharPressed();
+
+	// Check if more characters have been pressed on the same frame
+	while (key > 0)
+	{
+		// NOTE: Only allow keys in range [32..125]
+		if ((key >= 32) && (key <= 125) && (letterCount < 9))
+		{
+			name[letterCount] = (char)key;
+			name[letterCount + 1] = '\0'; // Add null terminator at the end of the string.
+			letterCount++;
+		}
+
+		key = GetCharPressed();  // Check next character in the queue
+	}
+
+	//Remove chars 
+	if (IsKeyPressed(KEY_BACKSPACE))
+	{
+		letterCount--;
+		if (letterCount < 0) letterCount = 0;
+		name[letterCount] = '\0';
+	}
+
+}
+
+
+void Endscreen::RenderNameInputScreen()
+{
+	DrawText("NEW HIGHSCORE!", 600, 300, 60, YELLOW);
+	// BELOW CODE IS FOR NAME INPUT RENDER
+	DrawText("PLACE MOUSE OVER INPUT BOX!", 600, 400, 20, YELLOW);
+
+	DrawRectangleRec(textBox, LIGHTGRAY);
+	if (mouseOnText)
+	{
+		// HOVER CONFIRMIATION
+		DrawRectangleLines((int)textBox.x, (int)textBox.y, (int)textBox.width, (int)textBox.height, RED);
+	}
+	else
+	{
+		DrawRectangleLines((int)textBox.x, (int)textBox.y, (int)textBox.width, (int)textBox.height, DARKGRAY);
+	}
+
+	//Draw the name being typed out
+	DrawText(name, (int)textBox.x + 5, (int)textBox.y + 8, 40, MAROON);
+
+	//Draw the text explaining how many characters are used
+	DrawText(TextFormat("INPUT CHARS: %i/%i", letterCount, 8), 600, 600, 20, YELLOW);
+
+	if (mouseOnText)
+	{
+		if (letterCount < 9)
+		{
+			// Draw blinking underscore char
+			if (((framesCounter / 20) % 2) == 0)
+			{
+				DrawText("_", (int)textBox.x + 8 + MeasureText(name, 40), (int)textBox.y + 12, 40, MAROON);
+			}
+
+		}
+		else
+		{
+			//Name needs to be shorter
+			DrawText("Press BACKSPACE to delete chars...", 600, 650, 20, YELLOW);
+		}
+
+	}
+
+	// Explain how to continue when name is input
+	if (letterCount > 0 && letterCount < 9)
+	{
+		DrawText("PRESS ENTER TO CONTINUE", 600, 800, 40, YELLOW);
+	}
+}
+
+void Endscreen::RenderHighscoreScreen()
+{// If no highscore or name is entered, show scoreboard and call it a day
+	DrawText("PRESS ENTER TO CONTINUE", 600, 200, 40, YELLOW);
+
+	DrawText("LEADERBOARD", 50, 100, 40, YELLOW);
+
+	for (int i = 0; i < Leaderboard.size(); i++)
+	{
+		char* tempNameDisplay = Leaderboard[i].name.data();
+		DrawText(tempNameDisplay, 50, 140 + (i * 40), 40, YELLOW);
+		DrawText(TextFormat("%i", Leaderboard[i].score), 350, 140 + (i * 40), 40, YELLOW);
 	}
 }
 

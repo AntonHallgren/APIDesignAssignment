@@ -5,8 +5,8 @@ class StartScreen
 {
 	bool active = true;
 public:
-	void Start();
-	void Update();
-	void Render();
-	bool GetActive();
+	void Start() noexcept;
+	void Update() noexcept;
+	void Render() const noexcept;
+	bool GetActive() const noexcept;
 };

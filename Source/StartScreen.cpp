@@ -1,11 +1,11 @@
 #include "StartScreen.h"
 
-void StartScreen::Start()
+void StartScreen::Start() noexcept
 {
 	active = true;
 }
 
-void StartScreen::Update()
+void StartScreen::Update() noexcept
 {
 	if (IsKeyReleased(KEY_SPACE))
 	{
@@ -13,7 +13,7 @@ void StartScreen::Update()
 	}
 }
 
-void StartScreen::Render()
+void StartScreen::Render() const noexcept
 {
 
 	//Code
@@ -22,7 +22,7 @@ void StartScreen::Render()
 	DrawText("PRESS SPACE TO BEGIN", 200, 350, 40, YELLOW);
 }
 
-bool StartScreen::GetActive()
+bool StartScreen::GetActive() const noexcept
 {
 	return active;
 }
