@@ -31,14 +31,7 @@ void Game::ChangeState(State newState) noexcept
 
 }
 
-
-//void Game::Launch()//TODO remove if safe
-//{
-//	//LOAD SOME RESOURCES HERE
-//	resources.Load();
-//}
-
-void Game::Update() noexcept//TODO too long, split into smaller
+void Game::Update() noexcept
 {
 	switch (gameState)
 	{

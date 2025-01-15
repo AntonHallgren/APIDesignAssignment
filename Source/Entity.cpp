@@ -7,8 +7,7 @@ float lineLength(Vector2 A, Vector2 B) noexcept//Uses pythagoras to calculate th
 
 bool pointInCircle(Vector2 circlePos, float radius, Vector2 point) noexcept // Uses pythagoras to calculate if a point is within a circle or not
 {
-	float distanceToCentre = lineLength(circlePos, point);
-
+	const float distanceToCentre = lineLength(circlePos, point);
 	if (distanceToCentre < radius)
 	{
 		return true;
@@ -51,10 +50,10 @@ bool CheckCollision(Vector2 circlePos, float circleRadius, Vector2 lineStart, Ve
 	// if the distance of the vectors combined is the same as the length the point is on the line
 
 	//since we are using floating points, we will allow the distance to be slightly innaccurate to create a smoother collision
-	const float buffer = 0.1f;
+	constexpr float buffer = 0.1f;
 
-	float closeToStart = lineLength(A, { closestX, closestY }); //closestX + Y compared to line Start
-	float closeToEnd = lineLength(B, { closestX, closestY });	//closestX + Y compared to line End
+	const float closeToStart = lineLength(A, { closestX, closestY }); //closestX + Y compared to line Start
+	const float closeToEnd = lineLength(B, { closestX, closestY });	//closestX + Y compared to line End
 
 	float closestLength = closeToStart + closeToEnd;
 

@@ -49,18 +49,10 @@ void Gameplay::Start() noexcept
 	{
 		Walls.emplace_back(Wall({ wall_distance * (i + 1) ,window_height - 250 }));
 	}
-	//creating player
 	player = Player();
-
-	//creating aliens
 	SpawnAliens();
-
-	//creating background
 	background = Background(600);
-
-	//reset score
-	score = 0;//TODO reconect score from gameplay to score in endscreen
-
+	score = 0;
 	active = true;
 }
 

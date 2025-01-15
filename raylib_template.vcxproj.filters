@@ -101,5 +101,8 @@
     <ClInclude Include="Source\StartScreen.h">
       <Filter>Header Files\GameState</Filter>
     </ClInclude>
+    <ClInclude Include="Source\WindowRAII.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

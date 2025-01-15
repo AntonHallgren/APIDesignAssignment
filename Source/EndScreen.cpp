@@ -107,7 +107,7 @@ void Endscreen::ReadKeyboard() noexcept
 		// NOTE: Only allow keys in range [32..125]
 		if ((key >= 32) && (key <= 125) && (letterCount < 9))
 		{
-			name[letterCount] = (char)key;
+			name[letterCount] = static_cast<char>(key);
 			name[letterCount + 1] = '\0'; // Add null terminator at the end of the string.
 			letterCount++;
 		}

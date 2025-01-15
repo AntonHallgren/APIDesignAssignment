@@ -22,8 +22,8 @@
 ********************************************************************************************/
 
 #include "raylib.h"
+#include "WindowRAII.hpp"
 #include "game.h"
-
 
 //------------------------------------------------------------------------------------
 // Program main entry point
@@ -32,43 +32,19 @@ int main(void)
 {    
     // Initialization
     //--------------------------------------------------------------------------------------
-    constexpr int screenWidth = 1920;
-    constexpr int screenHeight = 1080;
 
-    InitWindow(screenWidth, screenHeight, "SPACE INVADERS");//TODO this also need RAII
-
-    SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
-
+    WindowRAII w;
     Game game;
-    
-    //--------------------------------------------------------------------------------------
-
-    
-    //TODO: If there is time, implement sound
-
-
-    // Main game loop
-    while (!WindowShouldClose())    // Detect window close button or ESC key
+    while (!WindowShouldClose())
     {
-
         game.Update();
-        // Draw
-        //----------------------------------------------------------------------------------
         BeginDrawing();
 
         ClearBackground(BLACK);
         game.Render();
-
         EndDrawing();
-        //----------------------------------------------------------------------------------
     }
-    
-    // De-Initialization
-    //--------------------------------------------------------------------------------------
-    CloseWindow();        // Close window and OpenGL context
-    //--------------------------------------------------------------------------------------
 
-    std::string filename = "level.txt";  
 
     return 0;
 }
