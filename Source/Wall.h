@@ -2,18 +2,19 @@
 #include "Entities.h"
 
 
-
-struct Wall
+const int WALL_RADIUS = 60;
+class Wall
 {
-public:
 	Vector2 position;
-	Rectangle rec;
-	bool active;
-	Color color;
+	//Rectangle rec;//Are these unused?
+	bool active = true;
+	//Color color;
 	int health = 50;
-	int radius = 60;
 
-
-	void Render(const TextureRAII& texture);
-	void Update();
+public:
+	Wall(Vector2 startPosition) noexcept;
+	void LoseHealth() noexcept;
+	bool GetActive() const noexcept;
+	Vector2 GetPosition() const noexcept;
+	void Render(const TextureRAII& texture) const noexcept;
 };

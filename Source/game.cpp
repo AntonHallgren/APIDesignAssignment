@@ -4,6 +4,7 @@
 #include <chrono>
 #include <thread>
 #include <fstream>
+#include <algorithm>
 
 
 // MATH FUNCTIONS
@@ -37,12 +38,7 @@ void Game::Start()//TODO I dont think this is two step initiallisation but rathe
 	float wall_distance = window_width / (wallCount + 1); 
 	for (int i = 0; i < wallCount; i++)
 	{
-		Wall newWalls;
-		newWalls.position.y = window_height - 250; 
-		newWalls.position.x = wall_distance * (i + 1); 
-
-		Walls.push_back(newWalls); 
-
+		Walls.emplace_back(Wall({ wall_distance * (i + 1) ,window_height - 250 }));
 	}
 
 	//creating player
@@ -143,11 +139,6 @@ void Game::Update()//TODO too long, split into smaller
 		{
 			Projectiles[i].Update();
 		}
-		//UPDATE PROJECTILE
-		for (int i = 0; i < Walls.size(); i++)
-		{
-			Walls[i].Update();
-		}
 
 		//CHECK ALL COLLISONS HERE
 		for (int i = 0; i < Projectiles.size(); i++)
@@ -183,15 +174,13 @@ void Game::Update()//TODO too long, split into smaller
 			}
 
 
-			for (int b = 0; b < Walls.size(); b++)
+			for (Wall& wall : Walls)
 			{
-				if (CheckCollision(Walls[b].position, Walls[b].radius, Projectiles[i].lineStart, Projectiles[i].lineEnd))
+				if (CheckCollision(wall.GetPosition(), WALL_RADIUS, Projectiles[i].lineStart, Projectiles[i].lineEnd))
 				{
-					// Kill!
-					std::cout << "Hit! \n";
 					// Set them as inactive, will be killed later
 					Projectiles[i].active = false;
-					Walls[b].health -= 1;
+					wall.LoseHealth();
 				}
 			}
 		}
@@ -246,15 +235,7 @@ void Game::Update()//TODO too long, split into smaller
 				i--;
 			}
 		}
-		for (int i = 0; i < Walls.size(); i++)
-		{
-			if (Walls[i].active == false)
-			{
-				Walls.erase(Walls.begin() + i);
-				i--;
-			}
-		}
-
+		Walls.erase(std::remove_if(Walls.begin(), Walls.end(), [](Wall val) { return !val.GetActive(); }), Walls.end());
 			
 		
 
