@@ -3,24 +3,26 @@
 
 
 
-struct Star
+class Star
 {
 	Vector2 initPosition = { 0, 0 };
 	Vector2 position = { 0, 0 };
-	Color color = GRAY;
+	Color color = SKYBLUE;
 	float size = 0;
+public:
+	Star();
 	void Update(float starOffset);
-	void Render();
+	void Render() const;
 };
 
-struct Background
+class Background
 {
 
 
 	std::vector<Star> Stars;
-
-	void Initialize(int starAmount);
+public:
+	Background(int starAmount);
 	void Update(float offset);
-	void Render();
+	void Render() const;
 
 };

@@ -1,5 +1,11 @@
 #include "Backround.h"
 
+Star::Star()
+{
+	initPosition = { (float)GetRandomValue(-150, GetScreenWidth() + 150) ,(float)GetRandomValue(0, GetScreenHeight()) };
+	size = (float)GetRandomValue(1, 4) / 2;
+}
+
 //BACKGROUND
 void Star::Update(float starOffset)
 {
@@ -8,45 +14,35 @@ void Star::Update(float starOffset)
 
 }
 
-void Star::Render()
+void Star::Render() const
 {
 	DrawCircle((int)position.x, (int)position.y, size, color);
 }
 
 
-void Background::Initialize(int starAmount)
+Background::Background(int starAmount)
 {
 	for (int i = 0; i < starAmount; i++)
 	{
-		Star newStar;
-
-		newStar.initPosition.x = GetRandomValue(-150, GetScreenWidth() + 150);
-		newStar.initPosition.y = GetRandomValue(0, GetScreenHeight());
-
-		//random color?
-		newStar.color = SKYBLUE;
-
-		newStar.size = GetRandomValue(1, 4) / 2;
-
-		Stars.push_back(newStar);
-
+		Stars.emplace_back(Star());
 	}
 }
 
 void Background::Update(float offset)
 {
-	for (int i = 0; i < Stars.size(); i++)
+	for (Star& star : Stars)
 	{
-		Stars[i].Update(offset);
+		star.Update(offset);
 	}
+
 
 }
 
-void Background::Render()
+void Background::Render() const
 {
-	for (int i = 0; i < Stars.size(); i++)
+	for (const Star& star : Stars)
 	{
-		Stars[i].Render();
+		star.Render();
 	}
 }
 

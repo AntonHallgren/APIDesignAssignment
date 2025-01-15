@@ -52,9 +52,7 @@ void Game::Start()//TODO I dont think this is two step initiallisation but rathe
 	SpawnAliens();
 	
 	//creating background
-	Background newBackground;
-	newBackground.Initialize(600);
-	background = newBackground;
+	background = Background(600);
 
 	//reset score
 	score = 0;

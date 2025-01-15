@@ -90,7 +90,7 @@ struct Game
 
 	std::vector<PlayerData> Leaderboard = { {"Player 1", 500}, {"Player 2", 400}, {"Player 3", 300}, {"Player 4", 200}, {"Player 5", 100} };
 	
-	Background background;
+	Background background{ 0 };
 
 
 
