@@ -33,9 +33,6 @@
     <ClCompile Include="Source\game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Resources.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Alien.cpp">
       <Filter>Source Files\Entity</Filter>
     </ClCompile>
@@ -65,40 +62,40 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\game.h">
+    <ClInclude Include="Source\game.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Resources.h">
+    <ClInclude Include="Source\Resources.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\TextureRAII.h">
+    <ClInclude Include="Source\TextureRAII.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Alien.h">
+    <ClInclude Include="Source\Alien.hpp">
       <Filter>Header Files\Entity</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Backround.h">
+    <ClInclude Include="Source\Backround.hpp">
       <Filter>Header Files\Entity</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Entities.h">
+    <ClInclude Include="Source\Entities.hpp">
       <Filter>Header Files\Entity</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Player.h">
+    <ClInclude Include="Source\Player.hpp">
       <Filter>Header Files\Entity</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Projectile.h">
+    <ClInclude Include="Source\Projectile.hpp">
       <Filter>Header Files\Entity</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Wall.h">
+    <ClInclude Include="Source\Wall.hpp">
       <Filter>Header Files\Entity</Filter>
     </ClInclude>
-    <ClInclude Include="Source\EndScreen.h">
+    <ClInclude Include="Source\EndScreen.hpp">
       <Filter>Header Files\GameState</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Gameplay.h">
+    <ClInclude Include="Source\Gameplay.hpp">
       <Filter>Header Files\GameState</Filter>
     </ClInclude>
-    <ClInclude Include="Source\StartScreen.h">
+    <ClInclude Include="Source\StartScreen.hpp">
       <Filter>Header Files\GameState</Filter>
     </ClInclude>
     <ClInclude Include="Source\WindowRAII.hpp">

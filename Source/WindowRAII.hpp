@@ -4,8 +4,6 @@
 
 class WindowRAII
 {
-
-
 public:
 	WindowRAII() noexcept
 	{
@@ -14,7 +12,7 @@ public:
 
 		InitWindow(screenWidth, screenHeight, "SPACE INVADERS");
 
-		SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
+		SetTargetFPS(60);
 	}
 	~WindowRAII()
 	{

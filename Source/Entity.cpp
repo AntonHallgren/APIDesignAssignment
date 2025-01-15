@@ -1,4 +1,4 @@
-#include "Entities.h"
+#include "Entities.hpp"
 // MATH FUNCTIONS
 float lineLength(Vector2 A, Vector2 B) noexcept//Uses pythagoras to calculate the length of a line
 {

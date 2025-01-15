@@ -1,11 +1,11 @@
 #pragma once
 #include "raylib.h"
 #include <vector>
-#include "Resources.h"
+#include "Resources.hpp"
 #include <string>
-#include "Gameplay.h"
-#include "StartScreen.h"
-#include "EndScreen.h"
+#include "Gameplay.hpp"
+#include "StartScreen.hpp"
+#include "EndScreen.hpp"
 
 
 enum struct State

@@ -23,7 +23,7 @@
 
 #include "raylib.h"
 #include "WindowRAII.hpp"
-#include "game.h"
+#include "game.hpp"
 
 //------------------------------------------------------------------------------------
 // Program main entry point

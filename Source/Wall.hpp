@@ -1,5 +1,5 @@
 #pragma once
-#include "Entities.h"
+#include "Entities.hpp"
 
 
 constexpr int WALL_RADIUS = 60;

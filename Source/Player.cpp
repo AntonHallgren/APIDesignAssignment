@@ -1,4 +1,4 @@
-#include "Player.h"
+#include "Player.hpp"
 
 
 
@@ -69,7 +69,7 @@ int Player::GetActiveTexture() const noexcept
 	return activeTexture;
 }
 
-void Player::Render(const TextureRAII& texture) const noexcept //TODO reimplement animation on player
+void Player::Render(const TextureRAII& texture) const noexcept
 {
 	DrawTexturePro(texture.Get(),
 		{

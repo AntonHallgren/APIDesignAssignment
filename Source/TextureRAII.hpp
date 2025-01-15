@@ -10,7 +10,7 @@ class TextureRAII
 
 
 public:
-	explicit TextureRAII(std::string_view fileName) noexcept
+	explicit TextureRAII(std::string_view fileName)
 	{
 		texture = LoadTexture(fileName.data());//TODO check that it loaded properly
 	}

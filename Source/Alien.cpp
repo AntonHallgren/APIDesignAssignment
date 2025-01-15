@@ -1,4 +1,4 @@
-#include "Alien.h"
+#include "Alien.hpp"
 
 
 Alien::Alien(Vector2 startPosition) noexcept

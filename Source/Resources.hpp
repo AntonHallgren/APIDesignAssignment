@@ -1,16 +1,10 @@
 #pragma once
 #include "raylib.h"
 #include "vector"
-#include "TextureRAII.h"
+#include "TextureRAII.hpp"
 
-struct Resources //TODO implement resource handling
+struct Resources
 {
-	//void Load();
-	//void Unload();
-
-	//TextureRAII ship1{ "./Assets/Ship1.png" };
-	//TextureRAII ship2{ "./Assets/Ship2.png" };
-	//TextureRAII ship3{ "./Assets/Ship3.png" };
 	TextureRAII ship[3] = { TextureRAII{"./Assets/Ship1.png"}, TextureRAII{"./Assets/Ship2.png"}, TextureRAII{"./Assets/Ship3.png"} };
 
 	TextureRAII alienTexture{ "./Assets/Alien.png" };

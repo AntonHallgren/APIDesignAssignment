@@ -1,4 +1,4 @@
-#include "Gameplay.h"
+#include "Gameplay.hpp"
 
 void Gameplay::Update() noexcept
 {//Code
@@ -17,9 +17,7 @@ void Gameplay::Render() const noexcept
 	background.Render();
 	DrawText(TextFormat("Score: %i", score), 50, 20, 40, YELLOW);
 	DrawText(TextFormat("Lives: %i", player.GetLives()), 50, 70, 40, YELLOW);
-	//player rendering 
-	//player.Render(resources.shipTextures[player.activeTexture]);//Old version
-	player.Render(resources.ship[player.GetActiveTexture()]);//TODO recreate animation system
+	player.Render(resources.ship[player.GetActiveTexture()]);
 	for (const Projectile& proj : Projectiles)
 	{
 		proj.Render(resources.laserTexture);
@@ -61,9 +59,8 @@ int Gameplay::GetScore() const noexcept
 	return score;
 }
 
-void Gameplay::End() noexcept//TODO make sure game state is changed properly
+void Gameplay::End() noexcept
 {
-	//SAVE SCORE AND UPDATE SCOREBOARD
 	Projectiles.clear();
 	Walls.clear();
 	Aliens.clear();

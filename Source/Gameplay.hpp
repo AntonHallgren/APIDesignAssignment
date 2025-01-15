@@ -1,9 +1,9 @@
 #pragma once
-#include "Player.h"
-#include "Projectile.h"
-#include "Backround.h"
-#include "Wall.h"
-#include "Alien.h"
+#include "Player.hpp"
+#include "Projectile.hpp"
+#include "Backround.hpp"
+#include "Wall.hpp"
+#include "Alien.hpp"
 
 class Gameplay
 {

@@ -1,5 +1,5 @@
 #pragma once
-#include "Entities.h"
+#include "Entities.hpp"
 
 constexpr float PLAYER_BASE_HEIGHT = 70.0f;
 constexpr float PLAYER_RADIUS = 50;

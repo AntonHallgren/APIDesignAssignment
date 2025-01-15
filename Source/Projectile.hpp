@@ -1,5 +1,5 @@
 #pragma once
-#include "Entities.h"
+#include "Entities.hpp"
 
 class Projectile
 {

@@ -1,4 +1,4 @@
-#include "StartScreen.h"
+#include "StartScreen.hpp"
 
 void StartScreen::Start() noexcept
 {
