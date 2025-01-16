@@ -2,10 +2,11 @@
 #include "raylib.h"
 #include "vector"
 #include "TextureRAII.hpp"
+#include <array>
 
 struct Resources
 {
-	TextureRAII ship[3] = { TextureRAII{"./Assets/Ship1.png"}, TextureRAII{"./Assets/Ship2.png"}, TextureRAII{"./Assets/Ship3.png"} };
+	std::array< TextureRAII, 3> ship = { TextureRAII{"./Assets/Ship1.png"}, TextureRAII{"./Assets/Ship2.png"}, TextureRAII{"./Assets/Ship3.png"} };
 
 	TextureRAII alienTexture{ "./Assets/Alien.png" };
 	TextureRAII barrierTexture{ "./Assets/Barrier.png" };
