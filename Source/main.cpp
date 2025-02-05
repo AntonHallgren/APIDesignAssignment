@@ -33,17 +33,24 @@ int main(void)
     // Initialization
     //--------------------------------------------------------------------------------------
 
-    WindowRAII w;
-    Game game;
-    while (!WindowShouldClose())
-    {
-        game.Update();
-        BeginDrawing();
+    try {
+        WindowRAII w;
+        Game game; 
+        while (!WindowShouldClose())
+        {
+            game.Update();
+            BeginDrawing();
 
-        ClearBackground(BLACK);
-        game.Render();
-        EndDrawing();
+            ClearBackground(BLACK);
+            game.Render();
+            EndDrawing();
+        }
     }
+    catch(std::runtime_error e)
+    {
+        printf(e.what());
+    }
+    
 
 
     return 0;

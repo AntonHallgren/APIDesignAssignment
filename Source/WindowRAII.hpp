@@ -13,6 +13,9 @@ public:
 		InitWindow(screenWidth, screenHeight, "SPACE INVADERS");
 
 		SetTargetFPS(60);
+
+		//TODO learn should we throw if window fails to open
+
 	}
 	~WindowRAII()
 	{
