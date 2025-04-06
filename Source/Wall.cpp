@@ -1,10 +1,7 @@
 #include "Wall.hpp"
 
 
-Wall::Wall(Vector2 startPosition) noexcept
-{
-	position = startPosition;
-}
+Wall::Wall(Vector2 startPosition) noexcept : position(startPosition){}
 
 void Wall::LoseHealth() noexcept
 {

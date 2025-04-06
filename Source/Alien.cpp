@@ -2,9 +2,8 @@
 
 
 Alien::Alien(Vector2 startPosition) noexcept
-{
-	position = startPosition;
-}
+	: position(startPosition)
+{}
 
 void Alien::Update() noexcept
 {
