@@ -11,7 +11,7 @@ class Projectile
 	bool playerProjectile;
 
 public:
-	Projectile(Vector2 startPosition, EntityType type) noexcept;
+	Projectile(Vector2 startPosition, bool isPlayerProjectile) noexcept;
 	void Update() noexcept;
 	void Deactive() noexcept;
 	bool GetActive() const noexcept;

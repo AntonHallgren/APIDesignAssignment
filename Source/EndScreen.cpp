@@ -86,11 +86,11 @@ void Endscreen::UpdateNameInputScreen() noexcept
 
 	// If the name is right legth and enter is pressed, exit screen by setting highscore to false and add 
 	// name + score to scoreboard
-	if (letterCount > 0 && letterCount < 9 && IsKeyReleased(KEY_ENTER))
+	if (name.length() > 0 && name.length() < maxNameLength && IsKeyReleased(KEY_ENTER))
 	{
-		std::string nameEntry(name);
+		//std::string nameEntry(name);
 
-		InsertNewHighScore(nameEntry);
+		InsertNewHighScore(name);
 
 		newHighScore = false;
 	}
@@ -105,22 +105,18 @@ void Endscreen::ReadKeyboard() noexcept
 	while (key > 0)
 	{
 		// NOTE: Only allow keys in range [32..125]
-		if ((key >= 32) && (key <= 125) && (letterCount < 9))
+		if ((key >= 32) && (key <= 125) && (name.length() < maxNameLength))
 		{
-			name[letterCount] = static_cast<char>(key);
-			name[letterCount + 1] = '\0'; // Add null terminator at the end of the string.
-			letterCount++;
+			name.push_back((char)key);//TODO check if this cast is ok
 		}
 
 		key = GetCharPressed();  // Check next character in the queue
 	}
 
 	//Remove chars 
-	if (IsKeyPressed(KEY_BACKSPACE))
+	if (IsKeyPressed(KEY_BACKSPACE) && name.length() > 0)
 	{
-		letterCount--;
-		if (letterCount < 0) letterCount = 0;
-		name[letterCount] = '\0';
+		name.pop_back();
 	}
 
 }
@@ -152,19 +148,19 @@ void Endscreen::RenderNameInputScreen() const noexcept
 	}
 
 	//Draw the name being typed out
-	DrawText(name, static_cast<int>(textBox.x) + 5, static_cast<int>(textBox.y) + 8, 40, MAROON);
+	DrawText(name.c_str(), static_cast<int>(textBox.x) + 5, static_cast<int>(textBox.y) + maxNameLength-1, 40, MAROON);
 
 	//Draw the text explaining how many characters are used
-	DrawText(TextFormat("INPUT CHARS: %i/%i", letterCount, 8), 600, 600, 20, YELLOW);
+	DrawText(TextFormat("INPUT CHARS: %i/%i", name.length(), maxNameLength), 600, 600, 20, YELLOW);//TODO check if max name length is the correct value
 
 	if (mouseOnText)
 	{
-		if (letterCount < 9)
+		if (name.length() < maxNameLength)
 		{
 			// Draw blinking underscore char
 			if (((framesCounter / 20) % 2) == 0)
 			{
-				DrawText("_", static_cast<int>(textBox.x) + 8 + MeasureText(name, 40), static_cast<int>(textBox.y) + 12, 40, MAROON);
+				DrawText("_", static_cast<int>(textBox.x) + 8 + MeasureText(name.c_str(), 40), static_cast<int>(textBox.y) + 12, 40, MAROON);
 			}
 
 		}
@@ -177,7 +173,7 @@ void Endscreen::RenderNameInputScreen() const noexcept
 	}
 
 	// Explain how to continue when name is input
-	if (letterCount > 0 && letterCount < 9)
+	if (name.length() > 0 && name.length() < maxNameLength)
 	{
 		DrawText("PRESS ENTER TO CONTINUE", 600, 800, 40, YELLOW);
 	}

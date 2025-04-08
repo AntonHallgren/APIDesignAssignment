@@ -45,7 +45,7 @@ void Gameplay::Start() noexcept
 	const float wall_distance = window_width / (wallCount + 1);
 	for (int i = 0; i < wallCount; i++)
 	{
-		Walls.emplace_back(wall_distance * (i + 1) ,window_height - 250);
+		Walls.emplace_back(Vector2{ wall_distance * (i + 1) ,window_height - 250 });
 	}
 	player = Player();
 	SpawnAliens();
@@ -74,7 +74,7 @@ void Gameplay::SpawnAliens() noexcept
 {
 	for (int row = 0; row < formationHeight; row++) {
 		for (int col = 0; col < formationWidth; col++) {
-			Aliens.emplace_back((float)formationX + 450 + (col * alienSpacing),  (float)formationY + (row * alienSpacing));
+			Aliens.emplace_back(Vector2{ (float)formationX + 450 + (col * alienSpacing),  (float)formationY + (row * alienSpacing) });
 		}
 	}
 
@@ -170,7 +170,7 @@ void Gameplay::FireProjectiles() noexcept
 	if (IsKeyPressed(KEY_SPACE))
 	{
 		const float window_height = static_cast<float>(GetScreenHeight());
-		Projectiles.emplace_back(Vector2{player.GetXPos(), window_height - 130}, EntityType::PLAYER_PROJECTILE);
+		Projectiles.emplace_back(Vector2{player.GetXPos(), window_height - 130}, true);
 	}
 	//Alien
 	shootTimer += 1;
@@ -185,7 +185,7 @@ void Gameplay::FireProjectiles() noexcept
 	}
 	Vector2 p = Aliens[randomAlienIndex].GetPosition();
 	p.y += 40;
-	Projectiles.emplace_back(p, EntityType::ENEMY_PROJECTILE);
+	Projectiles.emplace_back(p, false);
 	shootTimer = 0;
 }
 

@@ -28,8 +28,10 @@ class Endscreen
 	bool mouseOnText = false;
 
 	//TEXTBOX ENTER
-	char name[9 + 1] = "\0";      //One extra space required for null terminator char '\0'
-	int letterCount = 0;
+	//char name[9 + 1] = "\0";      //One extra space required for null terminator char '\0'
+	std::string name = "";
+	//int letterCount = 0;
+	int maxNameLength = 9;//
 	int framesCounter = 0;//for blinking underscore when inputting name
 
 
