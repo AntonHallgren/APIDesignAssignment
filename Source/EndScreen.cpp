@@ -55,7 +55,7 @@ void Endscreen::InsertNewHighScore(std::string nameGiven) noexcept
 
 	for (size_t i = 0; i < Leaderboard.size(); i++)//TODO maybe there is a better way to do this
 	{
-		if (newData.score > Leaderboard[i].score)
+		if (newData.score > Leaderboard[i].score)//TODO figure this part out
 		{
 
 			Leaderboard.insert(Leaderboard.begin() + i, newData);
@@ -107,7 +107,7 @@ void Endscreen::ReadKeyboard() noexcept
 		// NOTE: Only allow keys in range [32..125]
 		if ((key >= 32) && (key <= 125) && (name.length() < maxNameLength))
 		{
-			name.push_back((char)key);//TODO check if this cast is ok
+			name.push_back(static_cast<char>(key));//TODO check if this cast is ok
 		}
 
 		key = GetCharPressed();  // Check next character in the queue
