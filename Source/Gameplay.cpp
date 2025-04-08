@@ -181,7 +181,7 @@ void Gameplay::FireProjectiles() noexcept
 	int randomAlienIndex = 0;
 	if (Aliens.size() > 1)
 	{
-		randomAlienIndex = rand() % Aliens.size();
+		randomAlienIndex = std::rand() % Aliens.size();
 	}
 	Vector2 p = Aliens[randomAlienIndex].GetPosition();
 	p.y += 40;
