@@ -4,7 +4,7 @@
 Projectile::Projectile(Vector2 startPosition, bool isPlayerProjectile) noexcept:
 	position(startPosition),
 	playerProjectile(isPlayerProjectile), 
-	speed(isPlayerProjectile ? 15 : -15)
+	speed(PROJECTILE_SPEED * (isPlayerProjectile ? 1 : -1))
 {}
 
 void Projectile::Update() noexcept
@@ -34,30 +34,17 @@ bool Projectile::IsPlayerProjectile() const noexcept
 
 Vector2 Projectile::GetLineStart() const noexcept
 {
-	try {
-		return Vector2Add(position, { 0, -15 });
-	}
-	catch(std::exception)
-	{
-		//I dont think Vector2Add can actually throw, but I want to be noexcept and this seems to be the most sensible way to handle it
-	}
-	return position;
+	return Vector2(position.x, position.y - PROJECTILE_LENGTH);
 }
 
 Vector2 Projectile::GetLineEnd() const noexcept
 {
-	try {
-		return Vector2Add(position, { 0, 15 });
-	}
-	catch (std::exception)
-	{}
-	return position;
+	return Vector2(position.x, position.y + PROJECTILE_LENGTH);
 }
 
 
 void Projectile::Render(const TextureRAII& texture) const noexcept
 {
-	//DrawCircle((int)position.x, (int)position.y, 10, RED);
 	DrawTexturePro(texture.Get(),
 		{
 			0,

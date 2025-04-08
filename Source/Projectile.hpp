@@ -1,6 +1,9 @@
 #pragma once
 #include "Entities.hpp"
 
+constexpr float PROJECTILE_LENGTH = 15.0f;
+constexpr int PROJECTILE_SPEED = 15;
+
 class Projectile
 {
 	// INITIALIZE PROJECTILE WHILE DEFINING IF ITS PLAYER OR ENEMY 
