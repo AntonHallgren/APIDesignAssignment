@@ -4,7 +4,7 @@ Star::Star() noexcept :
 	initPosition({
 		static_cast<float>(GetRandomValue(-150, GetScreenWidth() + 150)) ,
 		static_cast<float>(GetRandomValue(0, GetScreenHeight())) }),
-	size(static_cast<float>(GetRandomValue(1, 4)) / 2.0f)
+	size(static_cast<float>(GetRandomValue(1, 4)) / 2.0f)//TODO get rid of some static casts
 {}
 
 //BACKGROUND
@@ -17,7 +17,7 @@ void Star::Update(float starOffset) noexcept
 
 void Star::Render() const noexcept
 {
-	DrawCircle(static_cast<int>(position.x), static_cast<int>(position.y), size, color);
+	DrawCircle(position, size, color);
 }
 
 

@@ -36,7 +36,7 @@ int main(void)
 {    
     // Initialization
     //--------------------------------------------------------------------------------------
-    std::srand(static_cast<int>(std::time(0)));//TODO correct casting
+    std::srand(static_cast<int>(std::time({})));//TODO correct casting
     try {
         Game game; 
         while (!WindowShouldClose())
