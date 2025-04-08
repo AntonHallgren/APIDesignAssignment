@@ -1,5 +1,5 @@
 #pragma once
-#include "Entities.hpp"
+#include "UsefulMath.hpp"
 
 constexpr float PROJECTILE_LENGTH = 15.0f;
 constexpr int PROJECTILE_SPEED = 15;

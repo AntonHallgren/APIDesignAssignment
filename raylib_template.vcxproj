@@ -174,7 +174,7 @@
     <ClCompile Include="Source\Alien.cpp" />
     <ClCompile Include="Source\Background.cpp" />
     <ClCompile Include="Source\EndScreen.cpp" />
-    <ClCompile Include="Source\Entity.cpp" />
+    <ClCompile Include="Source\UsefulMath.cpp" />
     <ClCompile Include="Source\game.cpp" />
     <ClCompile Include="Source\Gameplay.cpp" />
     <ClCompile Include="Source\main.cpp" />
@@ -187,7 +187,7 @@
     <ClInclude Include="Source\Alien.hpp" />
     <ClInclude Include="Source\Backround.hpp" />
     <ClInclude Include="Source\EndScreen.hpp" />
-    <ClInclude Include="Source\Entities.hpp" />
+    <ClInclude Include="Source\UsefulMath.hpp" />
     <ClInclude Include="Source\game.hpp" />
     <ClInclude Include="Source\Gameplay.hpp" />
     <ClInclude Include="Source\Player.hpp" />

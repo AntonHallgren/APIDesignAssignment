@@ -39,7 +39,7 @@
     <ClCompile Include="Source\Background.cpp">
       <Filter>Source Files\Entity</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Entity.cpp">
+    <ClCompile Include="Source\UsefulMath.cpp">
       <Filter>Source Files\Entity</Filter>
     </ClCompile>
     <ClCompile Include="Source\Player.cpp">
@@ -77,7 +77,7 @@
     <ClInclude Include="Source\Backround.hpp">
       <Filter>Header Files\Entity</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Entities.hpp">
+    <ClInclude Include="Source\UsefulMath.hpp">
       <Filter>Header Files\Entity</Filter>
     </ClInclude>
     <ClInclude Include="Source\Player.hpp">

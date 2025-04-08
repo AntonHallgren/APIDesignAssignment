@@ -1,5 +1,5 @@
 #pragma once
-#include "Entities.hpp"
+#include "UsefulMath.hpp"
 
 
 constexpr float ALIEN_RADIUS = 30;
