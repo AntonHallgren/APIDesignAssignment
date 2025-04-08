@@ -60,6 +60,8 @@ void Game::Update() noexcept
 
 void Game::Render() const noexcept
 {
+	BeginDrawing();
+	ClearBackground(BLACK);
 	switch (gameState)
 	{
 	case State::STARTSCREEN:
@@ -72,9 +74,9 @@ void Game::Render() const noexcept
 		endscreen.Render();
 		break;
 	default:
-		//SHOULD NOT HAPPEN
 		break;
 	}
+	EndDrawing();
 }
 
 

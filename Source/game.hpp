@@ -6,6 +6,7 @@
 #include "Gameplay.hpp"
 #include "StartScreen.hpp"
 #include "EndScreen.hpp"
+#include "WindowRAII.hpp"
 
 
 enum struct State
@@ -19,6 +20,9 @@ enum struct State
 
 class Game
 {
+
+	WindowRAII w;
+
 	Gameplay gameplay;
 	StartScreen startScreen;
 	Endscreen endscreen;

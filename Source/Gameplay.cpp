@@ -17,7 +17,7 @@ void Gameplay::Render() const noexcept
 	background.Render();
 	DrawText(TextFormat("Score: %i", score), 50, 20, 40, YELLOW);
 	DrawText(TextFormat("Lives: %i", player.GetLives()), 50, 70, 40, YELLOW);
-	player.Render(resources.ship[player.GetActiveTexture()]);
+	player.Render(resources.ship[player.GetActiveTexture()]);//TODO solve this warning
 	for (const Projectile& proj : Projectiles)
 	{
 		proj.Render(resources.laserTexture);

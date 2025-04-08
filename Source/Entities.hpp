@@ -5,7 +5,6 @@
 #include "raylib.h"
 #pragma warning(pop)
 #include "Resources.hpp"
-#include <raymath.h>
 
 
 constexpr Vector2 operator-(Vector2 a, Vector2 b) noexcept;

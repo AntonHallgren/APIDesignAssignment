@@ -25,7 +25,6 @@
 #pragma warning(disable:ALL_CODE_ANALYSIS_WARNINGS)
 #include "raylib.h"
 #pragma warning(pop)
-#include "WindowRAII.hpp"
 #include "game.hpp"
 
 //------------------------------------------------------------------------------------
@@ -37,16 +36,11 @@ int main(void)
     //--------------------------------------------------------------------------------------
 
     try {
-        WindowRAII w;
         Game game; 
         while (!WindowShouldClose())
         {
             game.Update();
-            BeginDrawing();
-
-            ClearBackground(BLACK);
             game.Render();
-            EndDrawing();
         }
     }
     catch(std::runtime_error e)
