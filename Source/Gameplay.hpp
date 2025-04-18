@@ -22,12 +22,12 @@ class Gameplay
 	int formationY = 50;
 
 	Player player;
-	std::vector<Projectile> Projectiles;
-	std::vector<Wall> Walls;
-	std::vector<Alien> Aliens; 
+	std::vector<Projectile> projectiles;
+	std::vector<Wall> walls;
+	std::vector<Alien> aliens; 
 	Background background{ 0 };
 
-	Resources resources;//I would rather have this in game, but only gameplay uses it anyway
+	Resources resources;
 
 	bool active = false;
 

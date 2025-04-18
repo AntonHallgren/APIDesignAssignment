@@ -35,7 +35,7 @@ class Endscreen
 	//char name[9 + 1] = "\0";      //One extra space required for null terminator char '\0'
 	std::string name = "";
 	//int letterCount = 0;
-	int maxNameLength = 9;//
+	int maxNameLength = 9;//TODO I think this should be 8 and has been inconsistently applied
 	int framesCounter = 0;//for blinking underscore when inputting name
 
 

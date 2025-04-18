@@ -9,7 +9,7 @@
 class WindowRAII
 {
 public:
-	WindowRAII() noexcept
+	WindowRAII()
 	{
 		constexpr int screenWidth = 1920;
 		constexpr int screenHeight = 1080;
@@ -17,8 +17,10 @@ public:
 		InitWindow(screenWidth, screenHeight, "SPACE INVADERS");
 
 		SetTargetFPS(60);
-
-		//TODO learn should we throw if window fails to open
+		if (!IsWindowReady())
+		{
+			throw  std::runtime_error("Failed to open window");//TODO is this ok error handling
+		}
 
 	}
 	~WindowRAII()

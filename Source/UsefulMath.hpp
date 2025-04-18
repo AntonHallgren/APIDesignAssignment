@@ -20,3 +20,28 @@ bool CheckCollision(Vector2 circlePos, float circleRadius, Vector2 lineStart, Ve
 //some drawing overloads
 
 void DrawCircle(Vector2 position, float size, Color c) noexcept;
+
+
+
+
+//TODO REMOVE this TODO list
+//TODO Make sure there are no warnings
+//TODO Look over cases of noexcept
+
+//TODO make sure all emplace back are correct
+//TODO make sure I am not assigning values in constructors when I can use member initialization
+//TODO inconsistent use of direct initialization, member initialization list and in-constructor assignment - often using all three in the same class!
+//TODO remove irrelevent (i.e. essentially all) comments
+//TODO remove unused includes
+//TODO do not use Start/end functions
+//TODO look for loops that can be turned into algorithms
+//TODO solve problem: Game is dependent on BeginDrawing and EndDrawing but those calls are not done by game
+//TODO Collision test
+//TODO use count constructor instead of emplace back
+//TODO make sure reserve is called on vectors
+//TODO static_casts
+//TODO NO c-style casts
+//TODO make sure any random number generators are seeded and used correctly
+//TODO move constant member variables outside classes
+//TODO do not have use Entity type enum
+

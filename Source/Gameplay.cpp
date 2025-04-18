@@ -18,15 +18,15 @@ void Gameplay::Render() const noexcept
 	DrawText(TextFormat("Score: %i", score), 50, 20, 40, YELLOW);
 	DrawText(TextFormat("Lives: %i", player.GetLives()), 50, 70, 40, YELLOW);
 	player.Render(resources.ship[player.GetActiveTexture()]);//TODO solve this warning
-	for (const Projectile& proj : Projectiles)
+	for (const Projectile& proj : projectiles)
 	{
 		proj.Render(resources.laserTexture);
 	}
-	for (const Wall& wall : Walls)
+	for (const Wall& wall : walls)
 	{
 		wall.Render(resources.barrierTexture);
 	}
-	for (const Alien& alien : Aliens)
+	for (const Alien& alien : aliens)
 	{
 		alien.Render(resources.alienTexture);
 	}
@@ -43,9 +43,10 @@ void Gameplay::Start() noexcept
 	const float window_width = static_cast<float>(GetScreenWidth());
 	const float window_height = static_cast<float>(GetScreenHeight());
 	const float wall_distance = window_width / (wallCount + 1);
+	walls.reserve(wallCount);
 	for (int i = 0; i < wallCount; i++)
 	{
-		Walls.emplace_back(Vector2{ wall_distance * (i + 1) ,window_height - 250 });
+		walls.emplace_back(Vector2{ wall_distance * (i + 1) ,window_height - 250 });
 	}
 	player = Player();
 	SpawnAliens();
@@ -61,9 +62,9 @@ int Gameplay::GetScore() const noexcept
 
 void Gameplay::End() noexcept
 {
-	Projectiles.clear();
-	Walls.clear();
-	Aliens.clear();
+	projectiles.clear();
+	walls.clear();
+	aliens.clear();
 	active = false;
 }
 
@@ -74,7 +75,7 @@ void Gameplay::SpawnAliens() noexcept
 {
 	for (int row = 0; row < formationHeight; row++) {
 		for (int col = 0; col < formationWidth; col++) {
-			Aliens.emplace_back(Vector2{ (float)formationX + 450 + (col * alienSpacing),  (float)formationY + (row * alienSpacing) });
+			aliens.emplace_back(Vector2{ (float)formationX + 450 + (col * alienSpacing),  (float)formationY + (row * alienSpacing) });
 		}
 	}
 
@@ -84,7 +85,7 @@ void Gameplay::UpdateEntities() noexcept
 {//Update Player
 	player.Update();
 
-	for (Alien& alien : Aliens)
+	for (Alien& alien : aliens)
 	{
 		alien.Update();
 		if (alien.GetPosition().y > GetScreenHeight() - PLAYER_BASE_HEIGHT)
@@ -100,7 +101,7 @@ void Gameplay::UpdateEntities() noexcept
 	}
 
 	//Spawn new aliens if aliens run out
-	if (Aliens.size() < 1)
+	if (aliens.size() < 1)
 	{
 		SpawnAliens();
 	}
@@ -108,7 +109,7 @@ void Gameplay::UpdateEntities() noexcept
 	background.Update( -player.GetXPos() / 15);//Simplified
 
 	//UPDATE PROJECTILE
-	for (Projectile& proj : Projectiles)
+	for (Projectile& proj : projectiles)
 	{
 		proj.Update();
 	}
@@ -116,7 +117,7 @@ void Gameplay::UpdateEntities() noexcept
 
 void Gameplay::CheckCollisions() noexcept
 {
-	for (Projectile& proj : Projectiles)
+	for (Projectile& proj : projectiles)
 	{
 		if (proj.IsPlayerProjectile())
 		{
@@ -132,7 +133,7 @@ void Gameplay::CheckCollisions() noexcept
 
 void Gameplay::ProjectileWallCollision(Projectile& proj) noexcept
 {
-	for (Wall& wall : Walls)
+	for (Wall& wall : walls)
 	{
 		if (CheckCollision(wall.GetPosition(), WALL_RADIUS, proj.GetLineStart(), proj.GetLineStart()))
 		{
@@ -153,7 +154,7 @@ void Gameplay::ProjectilePlayerCollision(Projectile& proj) noexcept
 
 void Gameplay::ProjectileAlienCollision(Projectile& proj) noexcept
 {
-	for (Alien& alien : Aliens)
+	for (Alien& alien : aliens)
 	{
 		if (CheckCollision(alien.GetPosition(), ALIEN_RADIUS, proj.GetLineStart(), proj.GetLineStart()))
 		{
@@ -170,7 +171,7 @@ void Gameplay::FireProjectiles() noexcept
 	if (IsKeyPressed(KEY_SPACE))
 	{
 		const float window_height = static_cast<float>(GetScreenHeight());
-		Projectiles.emplace_back(Vector2{player.GetXPos(), window_height - 130}, true);
+		projectiles.emplace_back(Vector2{player.GetXPos(), window_height - 130}, true);
 	}
 	//Alien
 	shootTimer += 1;
@@ -179,21 +180,21 @@ void Gameplay::FireProjectiles() noexcept
 		return;
 	}
 	int randomAlienIndex = 0;
-	if (Aliens.size() > 1)
+	if (aliens.size() > 1)
 	{
-		randomAlienIndex = std::rand() % Aliens.size();
+		randomAlienIndex = std::rand() % aliens.size();
 	}
-	Vector2 p = Aliens[randomAlienIndex].GetPosition();
+	Vector2 p = aliens[randomAlienIndex].GetPosition();
 	p.y += 40;
-	Projectiles.emplace_back(p, false);
+	projectiles.emplace_back(p, false);
 	shootTimer = 0;
 }
 
 void Gameplay::RemoveInactiveEntities() noexcept
 {
-	Projectiles.erase(std::remove_if(Projectiles.begin(), Projectiles.end(), [](Projectile p) noexcept { return !p.GetActive(); }), Projectiles.end());
-	Aliens.erase(std::remove_if(Aliens.begin(), Aliens.end(), [](Alien a) noexcept { return !a.GetActive(); }), Aliens.end());
-	Walls.erase(std::remove_if(Walls.begin(), Walls.end(), [](Wall w) noexcept { return !w.GetActive(); }), Walls.end());
+	projectiles.erase(std::remove_if(projectiles.begin(), projectiles.end(), [](Projectile p) noexcept { return !p.GetActive(); }), projectiles.end());
+	aliens.erase(std::remove_if(aliens.begin(), aliens.end(), [](Alien a) noexcept { return !a.GetActive(); }), aliens.end());
+	walls.erase(std::remove_if(walls.begin(), walls.end(), [](Wall w) noexcept { return !w.GetActive(); }), walls.end());
 }
 
 

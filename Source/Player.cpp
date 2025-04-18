@@ -3,10 +3,6 @@
 
 
 
-Player::Player() noexcept :
-	x_pos(GetScreenWidth() / 2.0f)
-{}
-
 void Player::Update() noexcept
 {
 	direction = 0;
