@@ -4,6 +4,7 @@
 #include "Backround.hpp"
 #include "Wall.hpp"
 #include "Alien.hpp"
+#include "Resources.hpp"
 
 constexpr int WALL_COUNT = 5;
 

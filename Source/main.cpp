@@ -20,11 +20,7 @@
 *   Copyright (c) 2013-2022 Ramon Santamaria (@raysan5)
 *
 ********************************************************************************************/
-#include <CodeAnalysis/Warnings.h>
-#pragma warning(push)
-#pragma warning(disable:ALL_CODE_ANALYSIS_WARNINGS)
-#include "raylib.h"
-#pragma warning(pop)
+
 #include "game.hpp"
 #include <ctime>
 

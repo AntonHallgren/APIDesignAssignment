@@ -1,5 +1,4 @@
 #include "EndScreen.hpp"
-#include <fstream>
 
 void Endscreen::AddNewScore(int newScore) noexcept
 {

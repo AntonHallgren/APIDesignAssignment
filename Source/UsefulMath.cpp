@@ -1,10 +1,5 @@
 #include "UsefulMath.hpp"
 
-//static Vector2 operator+(Vector2 a, Vector2 b) noexcept
-//{
-//	return Vector2(a.x + b.x, a.y + b.y);
-//}
-
 constexpr Vector2 operator-(Vector2 a, Vector2 b) noexcept
 {
 	return Vector2(a.x - b.x, a.y - b.y);
@@ -27,7 +22,7 @@ constexpr Vector2 operator/(Vector2 v, float scalar) noexcept
 
 float Length(Vector2 v) noexcept
 {
-	return sqrtf(v*v);
+	return std::sqrt(v*v);
 }
 
 float lineLength(Vector2 A, Vector2 B) noexcept

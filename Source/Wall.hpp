@@ -1,5 +1,6 @@
 #pragma once
 #include "UsefulMath.hpp"
+#include "TextureRAII.hpp"
 
 
 constexpr int WALL_RADIUS = 60;

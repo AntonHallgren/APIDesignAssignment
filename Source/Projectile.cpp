@@ -1,6 +1,5 @@
 #include "Projectile.hpp"
 
-
 Projectile::Projectile(Vector2 startPosition, bool isPlayerProjectile) noexcept:
 	position(startPosition),
 	playerProjectile(isPlayerProjectile), 

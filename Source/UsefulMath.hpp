@@ -4,8 +4,7 @@
 #pragma warning(disable:ALL_CODE_ANALYSIS_WARNINGS)
 #include "raylib.h"
 #pragma warning(pop)
-#include "Resources.hpp"
-
+#include <cmath>
 
 constexpr Vector2 operator-(Vector2 a, Vector2 b) noexcept;
 constexpr float operator*(Vector2 a, Vector2 b) noexcept;

@@ -1,5 +1,6 @@
 #pragma once
 #include "UsefulMath.hpp"
+#include <vector>
 
 constexpr int STAR_AMOUNT = 600;
 constexpr int STAR_SIDE_MARGINS = 150;
