@@ -35,15 +35,9 @@ public:
 	void Update() noexcept;
 	void Render() const noexcept;
 
-private:/*
-	void Start();
-	void End();*/
+private:
 
 	void ChangeState(State newState) noexcept;
-
-
-	//void Continue();
-	//void Launch();
 
 
 

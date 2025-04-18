@@ -14,13 +14,13 @@ void Game::ChangeState(State newState) noexcept
 	switch (gameState)
 	{
 	case State::STARTSCREEN:
-		startScreen.Start();
+		startScreen = StartScreen{};
 		break;
 	case State::GAMEPLAY:
 		gameplay.Start();
 		break;
 	case State::ENDSCREEN:
-		endscreen.Start(gameplay.GetScore());
+		endscreen.AddNewScore(gameplay.GetScore());
 		break;
 	default:
 		break;

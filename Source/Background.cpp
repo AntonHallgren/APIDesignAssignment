@@ -14,10 +14,10 @@ void Star::Render() const noexcept
 }
 
 
-Background::Background(int starAmount) noexcept
+Background::Background()
 {
-	stars.reserve(starAmount);
-	for (int i = 0; i < starAmount; i++)
+	stars.reserve(STAR_AMOUNT);
+	for (int i = 0; i < STAR_AMOUNT; i++)
 	{
 		stars.emplace_back();
 	}

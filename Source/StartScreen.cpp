@@ -1,9 +1,5 @@
 #include "StartScreen.hpp"
 
-void StartScreen::Start() noexcept
-{
-	active = true;
-}
 
 void StartScreen::Update() noexcept
 {

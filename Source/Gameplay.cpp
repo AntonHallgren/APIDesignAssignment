@@ -37,9 +37,11 @@ bool Gameplay::GetActive() const noexcept
 	return active;
 }
 
+/*
+Idealy I should not rely on a start function, and instead recreate the object when needed. //TODO some more things to say here
+*/
 void Gameplay::Start() noexcept
 {
-	// creating walls 
 	const float window_width = static_cast<float>(GetScreenWidth());
 	const float window_height = static_cast<float>(GetScreenHeight());
 	const float wall_distance = window_width / (wallCount + 1);
@@ -50,7 +52,6 @@ void Gameplay::Start() noexcept
 	}
 	player = Player();
 	SpawnAliens();
-	background = Background(600);
 	score = 0;
 	active = true;
 }
@@ -179,7 +180,7 @@ void Gameplay::FireProjectiles() noexcept
 	{
 		return;
 	}
-	int randomAlienIndex = 0;
+	size_t randomAlienIndex = 0;
 	if (aliens.size() > 1)
 	{
 		randomAlienIndex = std::rand() % aliens.size();

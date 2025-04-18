@@ -26,7 +26,7 @@
 #include "raylib.h"
 #pragma warning(pop)
 #include "game.hpp"
-#include <ctime>
+//#include <ctime>
 
 
 //------------------------------------------------------------------------------------
@@ -36,7 +36,7 @@ int main(void)
 {    
     // Initialization
     //--------------------------------------------------------------------------------------
-    std::srand(static_cast<int>(std::time({})));//TODO correct casting
+    //std::srand(static_cast<int>(std::time({})));//TODO correct casting
     try {
         Game game; 
         while (!WindowShouldClose())

@@ -1,7 +1,7 @@
 #pragma once
 #include "UsefulMath.hpp"
 
-
+constexpr int STAR_AMOUNT = 600;
 
 class Star
 {
@@ -22,7 +22,7 @@ class Background
 
 	std::vector<Star> stars;
 public:
-	Background(int starAmount) noexcept;
+	Background();
 	void Update(float offset) noexcept;
 	void Render() const noexcept;
 

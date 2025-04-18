@@ -40,7 +40,7 @@ class Endscreen
 
 
 public:
-	void Start(int newScore) noexcept;
+	void AddNewScore(int newScore) noexcept;
 	void Update() noexcept;
 	void Render() const noexcept;
 	bool GetActive() const noexcept;

@@ -1,5 +1,4 @@
 #include "UsefulMath.hpp"
-// MATH FUNCTIONS
 
 //static Vector2 operator+(Vector2 a, Vector2 b) noexcept
 //{

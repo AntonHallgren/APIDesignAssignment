@@ -1,7 +1,7 @@
 #include "EndScreen.hpp"
 #include <fstream>
 
-void Endscreen::Start(int newScore) noexcept
+void Endscreen::AddNewScore(int newScore) noexcept
 {
 	score = newScore;
 	newHighScore = CheckNewHighScore();

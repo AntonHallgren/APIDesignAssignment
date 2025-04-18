@@ -25,7 +25,7 @@ class Gameplay
 	std::vector<Projectile> projectiles;
 	std::vector<Wall> walls;
 	std::vector<Alien> aliens; 
-	Background background{ 0 };
+	Background background;
 
 	Resources resources;
 
