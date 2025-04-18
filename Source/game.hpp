@@ -27,7 +27,6 @@ class Game
 	StartScreen startScreen;
 	Endscreen endscreen;
 
-	// Gamestate
 	State gameState = State::STARTSCREEN;
 
 

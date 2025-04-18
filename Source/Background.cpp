@@ -29,8 +29,6 @@ void Background::Update(float offset) noexcept
 	{
 		star.Update(offset);
 	}
-
-
 }
 
 void Background::Render() const noexcept

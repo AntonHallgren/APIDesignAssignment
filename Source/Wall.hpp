@@ -6,9 +6,7 @@ constexpr int WALL_RADIUS = 60;
 class Wall
 {
 	Vector2 position;
-	//Rectangle rec;//Are these unused?
 	bool active = true;
-	//Color color;
 	int health = 50;
 
 public:

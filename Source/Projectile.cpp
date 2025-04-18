@@ -11,7 +11,7 @@ void Projectile::Update() noexcept
 {
 	position.y -= speed;
 
-	if (position.y < 0 || position.y > 1500)
+	if (position.y < 0 || position.y > 1500)//TODO what does this value come from? Replace it
 	{
 		active = false;
 	}

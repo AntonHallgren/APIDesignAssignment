@@ -40,13 +40,13 @@ bool Gameplay::GetActive() const noexcept
 /*
 Idealy I should not rely on a start function, and instead recreate the object when needed. //TODO some more things to say here
 */
-void Gameplay::Start() noexcept
+void Gameplay::Restart() noexcept
 {
 	const float window_width = static_cast<float>(GetScreenWidth());
 	const float window_height = static_cast<float>(GetScreenHeight());
-	const float wall_distance = window_width / (wallCount + 1);
-	walls.reserve(wallCount);
-	for (int i = 0; i < wallCount; i++)
+	const float wall_distance = window_width / (WALL_COUNT + 1);
+	walls.reserve(WALL_COUNT);
+	for (int i = 0; i < WALL_COUNT; i++)
 	{
 		walls.emplace_back(Vector2{ wall_distance * (i + 1) ,window_height - 250 });
 	}
@@ -72,11 +72,12 @@ void Gameplay::End() noexcept
 
 
 
-void Gameplay::SpawnAliens() noexcept
+void Gameplay::SpawnAliens()
 {
-	for (int row = 0; row < formationHeight; row++) {
-		for (int col = 0; col < formationWidth; col++) {
-			aliens.emplace_back(Vector2{ (float)formationX + 450 + (col * alienSpacing),  (float)formationY + (row * alienSpacing) });
+	aliens.reserve(FORMATION_HEIGHT * FORMATION_WIDTH);
+	for (int row = 0; row < FORMATION_HEIGHT; row++) {
+		for (int col = 0; col < FORMATION_WIDTH; col++) {
+			aliens.emplace_back(Vector2{ ALIEN_FORMATION_START_X + 450 + (col * ALIEN_SPACING),  ALIEN_FORMATION_START_Y + (row * ALIEN_SPACING) });
 		}
 	}
 

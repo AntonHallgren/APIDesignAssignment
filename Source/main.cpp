@@ -26,17 +26,11 @@
 #include "raylib.h"
 #pragma warning(pop)
 #include "game.hpp"
-//#include <ctime>
+#include <ctime>
 
-
-//------------------------------------------------------------------------------------
-// Program main entry point
-//------------------------------------------------------------------------------------
 int main(void)
-{    
-    // Initialization
-    //--------------------------------------------------------------------------------------
-    //std::srand(static_cast<int>(std::time({})));//TODO correct casting
+{
+    std::srand(static_cast<int>(std::time({})));//TODO correct casting
     try {
         Game game; 
         while (!WindowShouldClose())
@@ -49,8 +43,9 @@ int main(void)
     {
         printf(e.what());
     }
-    
-
-
+    catch (...)
+    {
+        printf("Something was thrown");//TODO do correct error handling
+    }
     return 0;
 }

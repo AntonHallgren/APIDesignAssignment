@@ -2,11 +2,12 @@
 #include "UsefulMath.hpp"
 
 constexpr int STAR_AMOUNT = 600;
+constexpr int STAR_SIDE_MARGINS = 150;
 
 class Star
 {
 	Vector2 initPosition = {
-		static_cast<float>(GetRandomValue(-150, GetScreenWidth() + 150)) ,
+		static_cast<float>(GetRandomValue(-STAR_SIDE_MARGINS, GetScreenWidth() + STAR_SIDE_MARGINS)) ,
 		static_cast<float>(GetRandomValue(0, GetScreenHeight())) };//TODO too many static casts?
 	Vector2 position = { 0, 0 };
 	Color color = SKYBLUE;

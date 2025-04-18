@@ -6,11 +6,9 @@ constexpr int PROJECTILE_SPEED = 15;
 
 class Projectile
 {
-	// INITIALIZE PROJECTILE WHILE DEFINING IF ITS PLAYER OR ENEMY 
 	Vector2 position;
 	int speed;
 	bool active = true;
-	//EntityType type;
 	bool playerProjectile;
 
 public:

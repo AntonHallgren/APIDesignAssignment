@@ -30,12 +30,12 @@ float Length(Vector2 v) noexcept
 	return sqrtf(v*v);
 }
 
-float lineLength(Vector2 A, Vector2 B) noexcept//Uses pythagoras to calculate the length of a line
+float lineLength(Vector2 A, Vector2 B) noexcept
 {
 	return Length(B - A);
 }
 
-bool pointInCircle(Vector2 circlePos, float radius, Vector2 point) noexcept // Uses pythagoras to calculate if a point is within a circle or not
+bool pointInCircle(Vector2 circlePos, float radius, Vector2 point) noexcept 
 {
 	const float distanceToCentre = lineLength(circlePos, point);
 	if (distanceToCentre < radius)

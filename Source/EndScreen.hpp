@@ -22,21 +22,15 @@ class Endscreen
 	bool active = false;
 
 	bool newHighScore = false;
-
-
-	// Entity Storage and Resources
 	std::vector<PlayerData> Leaderboard = { {"Player 1", 500}, {"Player 2", 400}, {"Player 3", 300}, {"Player 4", 200}, {"Player 5", 100} };
 
 
 	Rectangle textBox = { 600, 500, 225, 50 };
 	bool mouseOnText = false;
 
-	//TEXTBOX ENTER
-	//char name[9 + 1] = "\0";      //One extra space required for null terminator char '\0'
 	std::string name = "";
-	//int letterCount = 0;
-	int maxNameLength = 9;//TODO I think this should be 8 and has been inconsistently applied
-	int framesCounter = 0;//for blinking underscore when inputting name
+	int maxNameLength = 8;//TODO I think this should be 8 and has been inconsistently applied
+	int framesCounter = 0;
 
 
 public:

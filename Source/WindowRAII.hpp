@@ -6,15 +6,15 @@
 #pragma warning(pop)
 
 
+constexpr int SCREEN_WIDTH = 1920;
+constexpr int SCREEN_HEIGHT = 1080;
 class WindowRAII
 {
 public:
 	WindowRAII()
 	{
-		constexpr int screenWidth = 1920;
-		constexpr int screenHeight = 1080;
 
-		InitWindow(screenWidth, screenHeight, "SPACE INVADERS");
+		InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "SPACE INVADERS");
 
 		SetTargetFPS(60);
 		if (!IsWindowReady())

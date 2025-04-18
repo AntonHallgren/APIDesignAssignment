@@ -44,7 +44,7 @@ void Alien::GetHit() noexcept
 	active = false;
 }
 
-void Alien::Render(const TextureRAII& texture) const noexcept
+void Alien::Render(const TextureRAII& texture) const noexcept//TODO doing something about renders could be good
 {
 	DrawTexturePro(texture.Get(),
 		{

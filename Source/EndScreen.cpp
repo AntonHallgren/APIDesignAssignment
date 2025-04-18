@@ -57,13 +57,9 @@ void Endscreen::InsertNewHighScore(std::string nameGiven) noexcept
 	{
 		if (newData.score > Leaderboard[i].score)//TODO figure this part out
 		{
-
 			Leaderboard.insert(Leaderboard.begin() + i, newData);
-
 			Leaderboard.pop_back();
-
 			i = Leaderboard.size();
-
 		}
 	}
 }
@@ -73,7 +69,6 @@ void Endscreen::UpdateNameInputScreen() noexcept
 	mouseOnText = CheckCollisionPointRec(GetMousePosition(), textBox);
 	if (mouseOnText)
 	{
-		// Set the window's cursor to the I-Beam
 		SetMouseCursor(MOUSE_CURSOR_IBEAM);
 		ReadKeyboard();
 		framesCounter++;
@@ -83,37 +78,24 @@ void Endscreen::UpdateNameInputScreen() noexcept
 		SetMouseCursor(MOUSE_CURSOR_DEFAULT);
 		framesCounter = 0;
 	}
-
-	// If the name is right legth and enter is pressed, exit screen by setting highscore to false and add 
-	// name + score to scoreboard
 	if (name.length() > 0 && name.length() < maxNameLength && IsKeyReleased(KEY_ENTER))
 	{
-		//std::string nameEntry(name);
-
 		InsertNewHighScore(name);
-
 		newHighScore = false;
 	}
 }
 
 void Endscreen::ReadKeyboard() noexcept
 {
-	// Get char pressed on the queue
 	int key = GetCharPressed();
-
-	// Check if more characters have been pressed on the same frame
 	while (key > 0)
 	{
-		// NOTE: Only allow keys in range [32..125]
 		if ((key >= 32) && (key <= 125) && (name.length() < maxNameLength))
 		{
 			name.push_back(static_cast<char>(key));//TODO check if this cast is ok
 		}
-
-		key = GetCharPressed();  // Check next character in the queue
+		key = GetCharPressed();
 	}
-
-	//Remove chars 
 	if (IsKeyPressed(KEY_BACKSPACE) && name.length() > 0)
 	{
 		name.pop_back();

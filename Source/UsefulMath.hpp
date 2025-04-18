@@ -28,13 +28,9 @@ void DrawCircle(Vector2 position, float size, Color c) noexcept;
 //TODO Make sure there are no warnings
 //TODO Look over cases of noexcept
 
-//TODO make sure all emplace back are correct
 //TODO remove irrelevent (i.e. essentially all) comments
 //TODO remove unused includes
-//TODO do not use Start/end functions
 //TODO look for loops that can be turned into algorithms
-//TODO solve problem: Game is dependent on BeginDrawing and EndDrawing but those calls are not done by game
-//TODO Collision test
 //TODO static_casts
 //TODO NO c-style casts
 //TODO move constant member variables outside classes
@@ -45,3 +41,4 @@ void DrawCircle(Vector2 position, float size, Color c) noexcept;
 
 //TODO use count constructor instead of emplace back//Did not figure out sufficently how this is done
 //TODO make sure any random number generators are seeded and used correctly
+//TODO do not use Start/end functions

@@ -17,7 +17,7 @@ void Game::ChangeState(State newState) noexcept
 		startScreen = StartScreen{};
 		break;
 	case State::GAMEPLAY:
-		gameplay.Start();
+		gameplay.Restart();
 		break;
 	case State::ENDSCREEN:
 		endscreen.AddNewScore(gameplay.GetScore());

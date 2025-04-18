@@ -5,21 +5,19 @@
 #include "Wall.hpp"
 #include "Alien.hpp"
 
+constexpr int WALL_COUNT = 5;
+
+constexpr int FORMATION_WIDTH = 8;
+constexpr int FORMATION_HEIGHT = 5;
+
+constexpr float ALIEN_SPACING = 80;
+constexpr float ALIEN_FORMATION_START_X = 100;
+constexpr float ALIEN_FORMATION_START_Y = 50;
+
 class Gameplay
 {
-	// Score
 	int score = 0;
-	//Aliens shooting
 	float shootTimer = 0;
-
-	// for later, make a file where you can adjust the number of walls (config file) 
-	int wallCount = 5;
-	//Data for generating alien formation
-	int formationWidth = 8;
-	int formationHeight = 5;
-	int alienSpacing = 80;
-	int formationX = 100;
-	int formationY = 50;
 
 	Player player;
 	std::vector<Projectile> projectiles;
@@ -35,12 +33,12 @@ public:
 	void Update() noexcept;
 	void Render() const noexcept;
 	bool GetActive() const noexcept;
-	void Start() noexcept;
+	void Restart() noexcept;
 	int GetScore() const noexcept;
 private:
 	void End() noexcept;
 
-	void SpawnAliens() noexcept;
+	void SpawnAliens();
 
 
 	void UpdateEntities() noexcept;
