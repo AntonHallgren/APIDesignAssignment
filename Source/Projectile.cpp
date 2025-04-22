@@ -33,12 +33,12 @@ bool Projectile::IsPlayerProjectile() const noexcept
 
 Vector2 Projectile::GetLineStart() const noexcept
 {
-	return Vector2(position.x, position.y - PROJECTILE_LENGTH);
+	return position - Vector2(0, PROJECTILE_LENGTH);
 }
 
 Vector2 Projectile::GetLineEnd() const noexcept
 {
-	return Vector2(position.x, position.y + PROJECTILE_LENGTH);
+	return position - Vector2(0, -PROJECTILE_LENGTH);//TODO change to +
 }
 
 

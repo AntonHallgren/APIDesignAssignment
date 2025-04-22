@@ -40,7 +40,7 @@ bool Gameplay::GetActive() const noexcept
 /*
 Idealy I should not rely on a start function, and instead recreate the object when needed. //TODO some more things to say here
 */
-void Gameplay::Restart() noexcept
+void Gameplay::Restart()
 {
 	const float window_width = static_cast<float>(GetScreenWidth());
 	const float window_height = static_cast<float>(GetScreenHeight());
@@ -80,6 +80,7 @@ void Gameplay::SpawnAliens()
 			aliens.emplace_back(Vector2{ ALIEN_FORMATION_START_X + 450 + (col * ALIEN_SPACING),  ALIEN_FORMATION_START_Y + (row * ALIEN_SPACING) });
 		}
 	}
+	
 
 }
 
@@ -108,7 +109,7 @@ void Gameplay::UpdateEntities() noexcept
 		SpawnAliens();
 	}
 
-	background.Update( -player.GetXPos() / 15);//Simplified
+	background.Update( -player.GetXPos() / 15);
 
 	//UPDATE PROJECTILE
 	for (Projectile& proj : projectiles)
@@ -147,7 +148,7 @@ void Gameplay::ProjectileWallCollision(Projectile& proj) noexcept
 
 void Gameplay::ProjectilePlayerCollision(Projectile& proj) noexcept
 {
-	if (CheckCollision({ player.GetXPos(), GetScreenHeight() - PLAYER_BASE_HEIGHT}, PLAYER_RADIUS, proj.GetLineStart(), proj.GetLineStart()))
+	if (CheckCollision(player.GetPosition(), PLAYER_RADIUS, proj.GetLineStart(), proj.GetLineStart()))
 	{
 		proj.Deactive();
 		player.TakeDamage();
@@ -172,8 +173,7 @@ void Gameplay::FireProjectiles() noexcept
 	//Player
 	if (IsKeyPressed(KEY_SPACE))
 	{
-		const float window_height = static_cast<float>(GetScreenHeight());
-		projectiles.emplace_back(Vector2{player.GetXPos(), window_height - 130}, true);
+		projectiles.emplace_back(player.GetPosition() - Vector2(0, 60), true);//TODO what does the '60' come from, figure out and replace
 	}
 	//Alien
 	shootTimer += 1;

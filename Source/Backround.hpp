@@ -20,11 +20,8 @@ public:
 
 class Background
 {
-
-
-	std::vector<Star> stars;
+	std::vector<Star> stars = std::vector<Star>( STAR_AMOUNT );
 public:
-	Background();
 	void Update(float offset) noexcept;
 	void Render() const noexcept;
 

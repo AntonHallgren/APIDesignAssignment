@@ -13,16 +13,6 @@ void Star::Render() const noexcept
 	DrawCircle(position, size, color);
 }
 
-
-Background::Background()
-{
-	stars.reserve(STAR_AMOUNT);
-	for (int i = 0; i < STAR_AMOUNT; i++)
-	{
-		stars.emplace_back();
-	}
-}
-
 void Background::Update(float offset) noexcept
 {
 	for (Star& star : stars)

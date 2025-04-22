@@ -59,6 +59,13 @@ float Player::GetXPos() const noexcept
 	return x_pos;
 }
 
+Vector2 Player::GetPosition() const noexcept
+{
+	return Vector2(x_pos, GetScreenHeight() - PLAYER_BASE_HEIGHT);//TODO make sure this is right
+}
+
+
+
 int Player::GetActiveTexture() const noexcept
 {
 	return activeTexture;

@@ -21,6 +21,7 @@ public:
 	int GetLives() const noexcept;
 
 	float GetXPos() const noexcept;
+	Vector2 GetPosition() const noexcept;
 
 	int GetActiveTexture() const noexcept;
 

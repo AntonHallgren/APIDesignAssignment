@@ -34,7 +34,7 @@ public:
 	void Update() noexcept;
 	void Render() const noexcept;
 	bool GetActive() const noexcept;
-	void Restart() noexcept;
+	void Restart();
 	int GetScore() const noexcept;
 private:
 	void End() noexcept;

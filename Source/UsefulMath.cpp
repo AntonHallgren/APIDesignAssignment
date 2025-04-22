@@ -1,5 +1,10 @@
 #include "UsefulMath.hpp"
 
+constexpr Vector2 operator+(Vector2 a, Vector2 b) noexcept
+{
+	return Vector2(a.x + b.x, a.y + b.y);
+}
+
 constexpr Vector2 operator-(Vector2 a, Vector2 b) noexcept
 {
 	return Vector2(a.x - b.x, a.y - b.y);
@@ -75,4 +80,18 @@ void DrawCircle(Vector2 position, float size, Color c) noexcept
 {
 	DrawCircle(static_cast<int>(position.x), static_cast<int>(position.y), size, c);
 }
+
+void MyDrawRectangle(Rectangle rect, Color c) noexcept
+{
+	DrawRectangleLines(
+		static_cast<int>(rect.x),
+		static_cast<int>(rect.y),
+		static_cast<int>(rect.width),
+		static_cast<int>(rect.height), c);
+}
+
+//void MyDrawText(std::string s, Rectangle textBox)
+//{
+//	DrawText(s.c_str(), static_cast<int>(textBox.x) + 5, static_cast<int>(textBox.y) + maxNameLength - 1, 40, MAROON);
+//}
 
