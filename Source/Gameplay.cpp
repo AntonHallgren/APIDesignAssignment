@@ -85,9 +85,8 @@ void Gameplay::SpawnAliens()
 }
 
 void Gameplay::UpdateEntities() noexcept
-{//Update Player
+{
 	player.Update();
-
 	for (Alien& alien : aliens)
 	{
 		alien.Update();
@@ -96,22 +95,24 @@ void Gameplay::UpdateEntities() noexcept
 			End();
 		}
 	}
-
-	//End game if player dies
 	if (player.GetLives() < 1)
 	{
 		End();
 	}
-
-	//Spawn new aliens if aliens run out
-	if (aliens.size() < 1)
+	//TODO learn if this is correct error handling
+	try
 	{
-		SpawnAliens();
+		if (aliens.size() < 1)
+		{
+			SpawnAliens();
+		}
 	}
-
+	catch (std::runtime_error e)
+	{
+		printf("Failed to spawn new aliens due to error an error");
+		End();
+	}
 	background.Update( -player.GetXPos() / 15);
-
-	//UPDATE PROJECTILE
 	for (Projectile& proj : projectiles)
 	{
 		proj.Update();
@@ -170,12 +171,10 @@ void Gameplay::ProjectileAlienCollision(Projectile& proj) noexcept
 
 void Gameplay::FireProjectiles() noexcept
 {
-	//Player
 	if (IsKeyPressed(KEY_SPACE))
 	{
 		projectiles.emplace_back(player.GetPosition() - Vector2(0, 60), true);//TODO what does the '60' come from, figure out and replace
 	}
-	//Alien
 	shootTimer += 1;
 	if (shootTimer < 60)
 	{

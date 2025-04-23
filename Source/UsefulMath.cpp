@@ -69,11 +69,7 @@ bool CheckCollision(Vector2 circlePos, float circleRadius, Vector2 lineStart, Ve
 		return false;
 	}
 	const Vector2 secondComponent = lineStartToCircle - firstComponent;
-	if (Length(secondComponent) < circleRadius)
-	{
-		return true;
-	}
-	return false;
+	return Length(secondComponent) < circleRadius;
 }
 
 void DrawCircle(Vector2 position, float size, Color c) noexcept
@@ -90,8 +86,4 @@ void MyDrawRectangle(Rectangle rect, Color c) noexcept
 		static_cast<int>(rect.height), c);
 }
 
-//void MyDrawText(std::string s, Rectangle textBox)
-//{
-//	DrawText(s.c_str(), static_cast<int>(textBox.x) + 5, static_cast<int>(textBox.y) + maxNameLength - 1, 40, MAROON);
-//}
 

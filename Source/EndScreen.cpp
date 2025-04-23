@@ -81,14 +81,14 @@ void Endscreen::UpdateNameInputScreen() noexcept
 	}
 }
 
-void Endscreen::ReadKeyboard() noexcept
+void Endscreen::ReadKeyboard()
 {
 	int key = GetCharPressed();
 	while (key > 0)
 	{
 		if ((key >= 32) && (key <= 125) && (name.length() < maxNameLength))
 		{
-			name.push_back(static_cast<char>(key));//TODO check if this cast is ok
+			name.push_back(static_cast<char>(key));//TODO how to handle int to char conversion
 		}
 		key = GetCharPressed();
 	}
@@ -131,13 +131,11 @@ void Endscreen::RenderNameInputScreen() const noexcept
 		}
 		else
 		{
-			//Name needs to be shorter
 			DrawText("Press BACKSPACE to delete chars...", 600, 650, 20, YELLOW);
 		}
 
 	}
 
-	// Explain how to continue when name is input
 	if (name.length() > 0 && name.length() < maxNameLength)
 	{
 		DrawText("PRESS ENTER TO CONTINUE", 600, 800, 40, YELLOW);

@@ -17,11 +17,8 @@ bool pointInCircle(Vector2 circlePos, float radius, Vector2 point) noexcept;
 bool CheckCollision(Vector2 circlePos, float circleRadius, Vector2 lineStart, Vector2 lineEnd) noexcept;
 
 
-//some drawing overloads
-
 void DrawCircle(Vector2 position, float size, Color c) noexcept;
 void MyDrawRectangle(Rectangle rect, Color c) noexcept;
-//void MyDrawText();
 
 
 
@@ -33,11 +30,7 @@ void MyDrawRectangle(Rectangle rect, Color c) noexcept;
 //TODO remove irrelevent (i.e. essentially all) comments
 //TODO look for loops that can be turned into algorithms
 //TODO static_casts//int to float in vector: 1
-//TODO NO c-style casts
 //TODO move constant member variables outside classes
-//TODO do not have use Entity type enum
-
-
 
 
 //TODO use count constructor instead of emplace back//Did not figure out sufficently how this is done

@@ -1,6 +1,5 @@
 #include "Backround.hpp"
 
-//BACKGROUND
 void Star::Update(float starOffset) noexcept
 {
 	position.x = initPosition.x + starOffset;
