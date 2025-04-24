@@ -74,7 +74,7 @@ void Endscreen::UpdateNameInputScreen()
 		SetMouseCursor(MOUSE_CURSOR_DEFAULT);
 		framesCounter = 0;
 	}
-	if (name.length() > 0 && name.length() < maxNameLength && IsKeyReleased(KEY_ENTER))
+	if (name.length() > 0 && name.length() < MAX_NAME_LENGTH && IsKeyReleased(KEY_ENTER))
 	{
 		InsertNewHighScore(name);
 		newHighScore = false;
@@ -88,7 +88,7 @@ void Endscreen::ReadKeyboard()
 	int key = GetCharPressed();
 	while (key > 0)
 	{
-		if ((key >= 32) && (key <= 125) && (name.length() < maxNameLength))
+		if ((key >= 32) && (key <= 125) && (name.length() < MAX_NAME_LENGTH))
 		{
 			name.push_back(static_cast<char>(key));
 		}
@@ -119,12 +119,12 @@ void Endscreen::RenderNameInputScreen() const noexcept
 		MyDrawRectangle(textBox, DARKGRAY);
 	}
 
-	DrawText(name.c_str(), static_cast<int>(textBox.x) + 5, static_cast<int>(textBox.y) + maxNameLength-1, 40, MAROON);
-	DrawText(TextFormat("INPUT CHARS: %i/%i", name.length(), maxNameLength), 600, 600, 20, YELLOW);//TODO check if max name length is the correct value
+	DrawText(name.c_str(), static_cast<int>(textBox.x) + 5, static_cast<int>(textBox.y) + MAX_NAME_LENGTH-1, 40, MAROON);
+	DrawText(TextFormat("INPUT CHARS: %i/%i", name.length(), MAX_NAME_LENGTH), 600, 600, 20, YELLOW);//TODO check if max name length is the correct value
 
 	if (mouseOnText)
 	{
-		if (name.length() < maxNameLength)
+		if (name.length() < MAX_NAME_LENGTH)
 		{
 			if (((framesCounter / 20) % 2) == 0)
 			{
@@ -139,7 +139,7 @@ void Endscreen::RenderNameInputScreen() const noexcept
 
 	}
 
-	if (name.length() > 0 && name.length() < maxNameLength)
+	if (name.length() > 0 && name.length() < MAX_NAME_LENGTH)
 	{
 		DrawText("PRESS ENTER TO CONTINUE", 600, 800, 40, YELLOW);
 	}

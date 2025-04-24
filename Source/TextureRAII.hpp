@@ -15,7 +15,7 @@ public:
 		texture = LoadTexture(fileName.data());
 		if (texture.id == 0)
 		{
-			throw std::runtime_error("Failed to load texture");//TODO if time make costum error
+			throw std::runtime_error("Failed to load texture");
 		}
 	}
 	~TextureRAII()

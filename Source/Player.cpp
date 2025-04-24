@@ -58,7 +58,7 @@ float Player::GetXPos() const noexcept
 
 Vector2 Player::GetPosition() const noexcept
 {
-	return Vector2(x_pos, GetScreenHeight() - PLAYER_BASE_HEIGHT);//TODO make sure this is right
+	return Vector2(x_pos, GetScreenHeight() - PLAYER_BASE_HEIGHT);
 }
 
 

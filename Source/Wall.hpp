@@ -1,5 +1,4 @@
 #pragma once
-#include "UsefulMath.hpp"
 #include "TextureRAII.hpp"
 
 

@@ -5,7 +5,6 @@
 constexpr float ALIEN_RADIUS = 30;
 class Alien
 {
-	Color color = WHITE;
 	Vector2 position;
 	bool active = true;
 	bool moveRight = true;

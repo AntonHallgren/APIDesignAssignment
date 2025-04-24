@@ -11,16 +11,16 @@ constexpr int SCREEN_HEIGHT = 1080;
 class WindowRAII
 {
 public:
+	WindowRAII() noexcept = delete;
 
 	explicit WindowRAII(std::string windowName)
 	{
 
 		InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, windowName.c_str());
-
 		SetTargetFPS(60);
 		if (!IsWindowReady())
 		{
-			throw  std::runtime_error("Failed to open window");//TODO is this ok error handling
+			throw  std::runtime_error("Failed to open window");
 		}
 
 	}

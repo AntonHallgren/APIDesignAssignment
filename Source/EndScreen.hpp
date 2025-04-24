@@ -11,7 +11,7 @@ struct PlayerData
 };
 
 
-
+constexpr int MAX_NAME_LENGTH = 8;//TODO I think this should be 8 and has been inconsistently applied
 class Endscreen
 {
 	int score = 0;
@@ -25,7 +25,7 @@ class Endscreen
 	bool mouseOnText = false;
 
 	std::string name = "";
-	int maxNameLength = 8;//TODO I think this should be 8 and has been inconsistently applied
+	
 	int framesCounter = 0;
 
 

@@ -1,6 +1,6 @@
 #include "Gameplay.hpp"
 
-void Gameplay::Update() noexcept
+void Gameplay::Update()
 {
 	if (IsKeyReleased(KEY_Q))
 	{
@@ -42,9 +42,6 @@ bool Gameplay::GetActive() const noexcept
 	return active;
 }
 
-/*
-Idealy I should not rely on a start function, and instead recreate the object when needed. //TODO some more things to say here
-*/
 void Gameplay::Restart()
 {
 	const float window_width = static_cast<float>(GetScreenWidth());
@@ -89,7 +86,7 @@ void Gameplay::SpawnAliens()
 
 }
 
-void Gameplay::UpdateEntities() noexcept
+void Gameplay::UpdateEntities()
 {
 	player.Update();
 	for (Alien& alien : aliens)
@@ -104,18 +101,9 @@ void Gameplay::UpdateEntities() noexcept
 	{
 		End();
 	}
-	//TODO learn if this is correct error handling
-	try
+	if (aliens.size() < 1)
 	{
-		if (aliens.size() < 1)
-		{
-			SpawnAliens();
-		}
-	}
-	catch (std::runtime_error e)
-	{
-		printf("Failed to spawn new aliens due to error an error");
-		End();
+		SpawnAliens();
 	}
 	background.Update( -player.GetXPos() / 15);
 	for (Projectile& proj : projectiles)

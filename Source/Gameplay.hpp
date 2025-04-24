@@ -31,7 +31,7 @@ class Gameplay
 	bool active = false;
 
 public:
-	void Update() noexcept;
+	void Update();
 	void Render() const noexcept;
 	bool GetActive() const noexcept;
 	void Restart();
@@ -42,7 +42,7 @@ private:
 	void SpawnAliens();
 
 
-	void UpdateEntities() noexcept;
+	void UpdateEntities();
 
 	void CheckCollisions() noexcept;
 	void ProjectileWallCollision(Projectile& proj) noexcept;
