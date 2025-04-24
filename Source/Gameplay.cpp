@@ -21,7 +21,7 @@ void Gameplay::Render() const noexcept
 	background.Render();
 	DrawText(TextFormat("Score: %i", score), 50, 20, 40, YELLOW);
 	DrawText(TextFormat("Lives: %i", player.GetLives()), 50, 70, 40, YELLOW);
-	player.Render(resources.ship[player.GetActiveTexture()]);//TODO solve this warning
+	player.Render(resources.ship[player.GetActiveTexture()]);
 	for (const Projectile& proj : projectiles)
 	{
 		proj.Render(resources.laserTexture);
@@ -168,7 +168,7 @@ void Gameplay::FireProjectiles() noexcept
 {
 	if (IsKeyPressed(KEY_SPACE))
 	{
-		projectiles.emplace_back(player.GetPosition() - Vector2(0, 60), true);//TODO what does the '60' come from, figure out and replace
+		projectiles.emplace_back(player.GetPosition() - Vector2(0, 60), true);
 	}
 	shootTimer += 1;
 	if (shootTimer < 60)
