@@ -11,10 +11,11 @@ constexpr int SCREEN_HEIGHT = 1080;
 class WindowRAII
 {
 public:
-	WindowRAII()
+
+	explicit WindowRAII(std::string windowName)
 	{
 
-		InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "SPACE INVADERS");
+		InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, windowName.c_str());
 
 		SetTargetFPS(60);
 		if (!IsWindowReady())
@@ -23,6 +24,8 @@ public:
 		}
 
 	}
+
+
 	~WindowRAII()
 	{
 		CloseWindow();

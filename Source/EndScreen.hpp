@@ -31,7 +31,7 @@ class Endscreen
 
 public:
 	void AddNewScore(int newScore) noexcept;
-	void Update() noexcept;
+	void Update();
 	void Render() const noexcept;
 	bool GetActive() const noexcept;
 
@@ -41,9 +41,9 @@ private:
 
 	void InsertNewHighScore(std::string name)noexcept;
 
-	void UpdateNameInputScreen()noexcept;
+	void UpdateNameInputScreen();
 
-	void ReadKeyboard()noexcept;
+	void ReadKeyboard();
 
 
 	void RenderNameInputScreen() const noexcept;

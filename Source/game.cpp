@@ -2,7 +2,7 @@
 
 
 
-void Game::ChangeState(State newState) noexcept
+void Game::ChangeState(State newState)
 {
 	gameState = newState;
 	switch (gameState)
@@ -21,7 +21,7 @@ void Game::ChangeState(State newState) noexcept
 	}
 }
 
-void Game::Update() noexcept
+void Game::Update()
 {
 	switch (gameState)
 	{

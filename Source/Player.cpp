@@ -25,9 +25,6 @@ void Player::Update() noexcept
 	{
 		x_pos = GetScreenWidth() - PLAYER_RADIUS;
 	}
-
-
-	//Determine frame for animation
 	timer += GetFrameTime();
 
 	if (timer > 0.4 && activeTexture == 2)

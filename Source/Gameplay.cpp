@@ -12,6 +12,10 @@ void Gameplay::Update() noexcept
 	RemoveInactiveEntities();
 }
 
+
+#pragma warning( push )
+#pragma warning( disable : 26482)
+#pragma warning( disable : 26446)
 void Gameplay::Render() const noexcept
 {
 	background.Render();
@@ -31,6 +35,7 @@ void Gameplay::Render() const noexcept
 		alien.Render(resources.alienTexture);
 	}
 }
+#pragma warning( pop )
 
 bool Gameplay::GetActive() const noexcept
 {
@@ -169,6 +174,8 @@ void Gameplay::ProjectileAlienCollision(Projectile& proj) noexcept
 	}
 }
 
+#pragma warning( push )
+#pragma warning( disable : 26446)
 void Gameplay::FireProjectiles() noexcept
 {
 	if (IsKeyPressed(KEY_SPACE))
@@ -190,6 +197,7 @@ void Gameplay::FireProjectiles() noexcept
 	projectiles.emplace_back(p, false);
 	shootTimer = 0;
 }
+#pragma warning( pop )
 
 void Gameplay::RemoveInactiveEntities() noexcept
 {

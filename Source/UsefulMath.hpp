@@ -26,14 +26,13 @@ void MyDrawRectangle(Rectangle rect, Color c) noexcept;
 //TODO REMOVE this TODO list
 //TODO Make sure there are no warnings
 //TODO Look over cases of noexcept
+//TODO may have messed something up with name length - look over
 
-//TODO remove irrelevent (i.e. essentially all) comments
 //TODO look for loops that can be turned into algorithms
 //TODO static_casts//int to float in vector: 1
 //TODO move constant member variables outside classes
 
 
-//TODO use count constructor instead of emplace back//Did not figure out sufficently how this is done
 //TODO make sure any random number generators are seeded and used correctly
 //TODO do not use Start/end functions
 

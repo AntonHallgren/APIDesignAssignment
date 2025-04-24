@@ -24,9 +24,12 @@
 #include "game.hpp"
 #include <ctime>
 
+
+#pragma warning( push )
+#pragma warning( disable : 26472 )
 int main(void)
 {
-    std::srand(static_cast<int>(std::time({})));//TODO correct casting
+    std::srand(static_cast<unsigned int>(std::time({})));
     try {
         Game game; 
         while (!WindowShouldClose())
@@ -45,3 +48,4 @@ int main(void)
     }
     return 0;
 }
+#pragma warning( pop )

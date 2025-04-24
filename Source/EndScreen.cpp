@@ -7,7 +7,7 @@ void Endscreen::AddNewScore(int newScore) noexcept
 	active = true;
 }
 
-void Endscreen::Update() noexcept
+void Endscreen::Update()
 {
 	if (newHighScore)
 	{
@@ -60,7 +60,7 @@ void Endscreen::InsertNewHighScore(std::string nameGiven) noexcept
 	}
 }
 
-void Endscreen::UpdateNameInputScreen() noexcept
+void Endscreen::UpdateNameInputScreen()
 {
 	mouseOnText = CheckCollisionPointRec(GetMousePosition(), textBox);
 	if (mouseOnText)
@@ -81,6 +81,8 @@ void Endscreen::UpdateNameInputScreen() noexcept
 	}
 }
 
+#pragma warning( push )
+#pragma warning( disable : 26472 )
 void Endscreen::ReadKeyboard()
 {
 	int key = GetCharPressed();
@@ -88,7 +90,7 @@ void Endscreen::ReadKeyboard()
 	{
 		if ((key >= 32) && (key <= 125) && (name.length() < maxNameLength))
 		{
-			name.push_back(static_cast<char>(key));//TODO how to handle int to char conversion
+			name.push_back(static_cast<char>(key));
 		}
 		key = GetCharPressed();
 	}
@@ -98,6 +100,7 @@ void Endscreen::ReadKeyboard()
 	}
 
 }
+#pragma warning( pop )
 
 
 void Endscreen::RenderNameInputScreen() const noexcept

@@ -17,7 +17,7 @@ enum struct State
 class Game
 {
 
-	WindowRAII w;
+	WindowRAII w{ "SPACE INVADERS" };
 
 	Gameplay gameplay;
 	StartScreen startScreen;
@@ -27,12 +27,12 @@ class Game
 
 
 public:
-	void Update() noexcept;
+	void Update();
 	void Render() const noexcept;
 
 private:
 
-	void ChangeState(State newState) noexcept;
+	void ChangeState(State newState);
 
 
 
