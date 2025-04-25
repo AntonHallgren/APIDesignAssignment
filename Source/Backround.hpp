@@ -8,11 +8,11 @@ constexpr int STAR_SIDE_MARGINS = 150;
 class Star
 {
 	Vector2 initPosition = {
-		static_cast<float>(GetRandomValue(-STAR_SIDE_MARGINS, GetScreenWidth() + STAR_SIDE_MARGINS)) ,
-		static_cast<float>(GetRandomValue(0, GetScreenHeight())) };//TODO too many static casts?
+		RandomFloatWithIntegerValue(-STAR_SIDE_MARGINS, GetScreenWidth() + STAR_SIDE_MARGINS) ,
+		RandomFloatWithIntegerValue(0, GetScreenHeight()) };
 	Vector2 position = { 0, 0 };
 	Color color = SKYBLUE;
-	float size = static_cast<float>(GetRandomValue(1, 4)) / 2.0f;
+	float size = RandomFloatWithIntegerValue(1, 4) / 2.0f;
 public:
 	void Update(float starOffset) noexcept;
 	void Render() const noexcept;

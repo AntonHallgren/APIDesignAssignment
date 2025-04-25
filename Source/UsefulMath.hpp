@@ -16,6 +16,7 @@ float lineLength(Vector2 A, Vector2 B) noexcept;
 bool pointInCircle(Vector2 circlePos, float radius, Vector2 point) noexcept;
 bool CheckCollision(Vector2 circlePos, float circleRadius, Vector2 lineStart, Vector2 lineEnd) noexcept;
 
+float RandomFloatWithIntegerValue(int minIncluseive, int maxExlusive) noexcept;
 
 void DrawCircle(Vector2 position, float size, Color c) noexcept;
 void MyDrawRectangle(Rectangle rect, Color c) noexcept;

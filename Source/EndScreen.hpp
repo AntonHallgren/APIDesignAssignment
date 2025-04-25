@@ -11,7 +11,7 @@ struct PlayerData
 };
 
 
-constexpr int MAX_NAME_LENGTH = 8;//TODO I think this should be 8 and has been inconsistently applied
+constexpr int MAX_NAME_LENGTH = 8;
 class Endscreen
 {
 	int score = 0;
