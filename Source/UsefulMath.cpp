@@ -74,7 +74,7 @@ bool CheckCollision(Vector2 circlePos, float circleRadius, Vector2 lineStart, Ve
 
 float RandomFloatWithIntegerValue(int minIncluseive, int maxExlusive) noexcept
 {
-	return GetRandomValue(static_cast<float>(minIncluseive), static_cast<float>(maxExlusive));
+	return static_cast<float>(GetRandomValue(minIncluseive, maxExlusive));
 }
 
 void DrawCircle(Vector2 position, float size, Color c) noexcept

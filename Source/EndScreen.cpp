@@ -74,7 +74,7 @@ void Endscreen::UpdateNameInputScreen()
 		SetMouseCursor(MOUSE_CURSOR_DEFAULT);
 		framesCounter = 0;
 	}
-	if (name.length() > 0 && name.length() < MAX_NAME_LENGTH && IsKeyReleased(KEY_ENTER))
+	if (name.length() > 0 && name.length() < MAX_NAME_LENGTH+1 && IsKeyReleased(KEY_ENTER))
 	{
 		InsertNewHighScore(name);
 		newHighScore = false;
@@ -120,7 +120,7 @@ void Endscreen::RenderNameInputScreen() const noexcept
 	}
 
 	DrawText(name.c_str(), static_cast<int>(textBox.x) + 5, static_cast<int>(textBox.y) + 8, 40, MAROON);
-	DrawText(TextFormat("INPUT CHARS: %i/%i", name.length(), MAX_NAME_LENGTH), 600, 600, 20, YELLOW);//TODO check if max name length is the correct value
+	DrawText(TextFormat("INPUT CHARS: %i/%i", name.length(), MAX_NAME_LENGTH), 600, 600, 20, YELLOW);
 
 	if (mouseOnText)
 	{

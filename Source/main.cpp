@@ -40,11 +40,11 @@ int main(void)
     }
     catch(std::runtime_error e)
     {
-        printf(e.what());
+        std::printf(e.what());
     }
     catch (...)
     {
-        printf("Something was thrown");//TODO do correct error handling
+        std::printf("Something was thrown");
     }
     return 0;
 }
