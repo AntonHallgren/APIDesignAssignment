@@ -7,25 +7,12 @@ Alien::Alien(Vector2 startPosition) noexcept
 
 void Alien::Update() noexcept
 {
-	if (moveRight)
-	{
-		position.x += speed;
+	position.x += speed;
 
-		if (position.x >= GetScreenWidth())
-		{
-			moveRight = false;
-			position.y += 50;
-		}
-	}
-	else
+	if (position.x >= GetScreenWidth() || position.x <= 0)
 	{
-		position.x -= speed;
-
-		if (position.x <= 0)
-		{
-			moveRight = true;
-			position.y += 50;
-		}
+		speed = -speed;
+		position.y += 50;
 	}
 }
 
@@ -46,19 +33,6 @@ void Alien::GetHit() noexcept
 
 void Alien::Render(const TextureRAII& texture) const noexcept
 {
-	DrawTexturePro(texture.Get(),
-		{
-			0,
-			0,
-			352,
-			352,
-		},
-		{
-			position.x,
-			position.y,
-			100,
-			100,
-		}, { 50 , 50 },
-		0,
-		WHITE);
+	texture.Draw(position);
+	
 }

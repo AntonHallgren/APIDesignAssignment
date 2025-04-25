@@ -72,9 +72,9 @@ bool CheckCollision(Vector2 circlePos, float circleRadius, Vector2 lineStart, Ve
 	return Length(secondComponent) < circleRadius;
 }
 
-float RandomFloatWithIntegerValue(int minIncluseive, int maxExlusive) noexcept
+float GetRandomValueF(int min, int max) noexcept
 {
-	return static_cast<float>(GetRandomValue(minIncluseive, maxExlusive));
+	return static_cast<float>(GetRandomValue(min, max));
 }
 
 void DrawCircle(Vector2 position, float size, Color c) noexcept

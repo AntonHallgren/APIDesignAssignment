@@ -13,16 +13,17 @@ void Gameplay::Update()
 }
 
 
-#pragma warning( push )
-#pragma warning( disable : 26482)
-#pragma warning( disable : 26446)
 void Gameplay::Render() const noexcept
 {
 	background.Render();
 	DrawText(TextFormat("Score: %i", score), 50, 20, 40, YELLOW);
 	DrawText(TextFormat("Lives: %i", player.GetLives()), 50, 70, 40, YELLOW);
-	player.Render(resources.ship[player.GetActiveTexture()]);
-	for (const Projectile& proj : projectiles)
+	player.Render(resources.ship);
+	for (const Projectile& proj : playerProjectile)
+	{
+		proj.Render(resources.laserTexture);
+	}
+	for (const Projectile& proj : alienProjectile)
 	{
 		proj.Render(resources.laserTexture);
 	}
@@ -35,7 +36,6 @@ void Gameplay::Render() const noexcept
 		alien.Render(resources.alienTexture);
 	}
 }
-#pragma warning( pop )
 
 bool Gameplay::GetActive() const noexcept
 {
@@ -65,7 +65,8 @@ int Gameplay::GetScore() const noexcept
 
 void Gameplay::End() noexcept
 {
-	projectiles.clear();
+	playerProjectile.clear();
+	alienProjectile.clear();
 	walls.clear();
 	aliens.clear();
 	active = false;
@@ -106,7 +107,11 @@ void Gameplay::UpdateEntities()
 		SpawnAliens();
 	}
 	background.Update( -player.GetXPos() / 15);
-	for (Projectile& proj : projectiles)
+	for (Projectile& proj : playerProjectile)
+	{
+		proj.Update();
+	}
+	for (Projectile& proj : alienProjectile)
 	{
 		proj.Update();
 	}
@@ -114,18 +119,18 @@ void Gameplay::UpdateEntities()
 
 void Gameplay::CheckCollisions() noexcept
 {
-	for (Projectile& proj : projectiles)
+	for (Projectile& proj : playerProjectile)
 	{
-		if (proj.IsPlayerProjectile())
-		{
-			ProjectileAlienCollision(proj);
-		}
-		else
-		{
-			ProjectilePlayerCollision(proj);
-		}
+		ProjectileAlienCollision(proj);
 		ProjectileWallCollision(proj);
 	}
+	for (Projectile& proj : alienProjectile)
+	{
+
+		ProjectilePlayerCollision(proj);
+		ProjectileWallCollision(proj);
+	}
+	
 }
 
 void Gameplay::ProjectileWallCollision(Projectile& proj) noexcept
@@ -162,13 +167,11 @@ void Gameplay::ProjectileAlienCollision(Projectile& proj) noexcept
 	}
 }
 
-#pragma warning( push )
-#pragma warning( disable : 26446)
 void Gameplay::FireProjectiles() noexcept
 {
 	if (IsKeyPressed(KEY_SPACE))
 	{
-		projectiles.emplace_back(player.GetPosition() - Vector2(0, 60), true);
+		playerProjectile.emplace_back(player.GetPosition() - Vector2(0, 60), true);
 	}
 	shootTimer += 1;
 	if (shootTimer < 60)
@@ -178,18 +181,26 @@ void Gameplay::FireProjectiles() noexcept
 	size_t randomAlienIndex = 0;
 	if (aliens.size() > 1)
 	{
-		randomAlienIndex = std::rand() % aliens.size();
+		#pragma warning( push )
+		#pragma warning( disable : 26472)//warning for casting size_t to int. Doing so should not be a problem in this context
+		randomAlienIndex = GetRandomValue(0, static_cast<int>(aliens.size())-1);
+		#pragma warning( pop )
 	}
+
+	#pragma warning( push )
+	#pragma warning( disable : 26446)//Suppressing warning asking me to use gsl::at(). 
 	Vector2 p = aliens[randomAlienIndex].GetPosition();
+	#pragma warning( pop )
+
 	p.y += 40;
-	projectiles.emplace_back(p, false);
+	alienProjectile.emplace_back(p, false);
 	shootTimer = 0;
 }
-#pragma warning( pop )
 
 void Gameplay::RemoveInactiveEntities() noexcept
 {
-	projectiles.erase(std::remove_if(projectiles.begin(), projectiles.end(), [](Projectile p) noexcept { return !p.GetActive(); }), projectiles.end());
+	alienProjectile.erase(std::remove_if(alienProjectile.begin(), alienProjectile.end(), [](Projectile p) noexcept { return !p.GetActive(); }), alienProjectile.end());
+	playerProjectile.erase(std::remove_if(playerProjectile.begin(), playerProjectile.end(), [](Projectile p) noexcept { return !p.GetActive(); }), playerProjectile.end());
 	aliens.erase(std::remove_if(aliens.begin(), aliens.end(), [](Alien a) noexcept { return !a.GetActive(); }), aliens.end());
 	walls.erase(std::remove_if(walls.begin(), walls.end(), [](Wall w) noexcept { return !w.GetActive(); }), walls.end());
 }

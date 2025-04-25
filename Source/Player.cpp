@@ -27,14 +27,13 @@ void Player::Update() noexcept
 	}
 	timer += GetFrameTime();
 
-	if (timer > 0.4 && activeTexture == 2)
-	{
-		activeTexture = 0;
-		timer = 0;
-	}
-	else if (timer > 0.4)
+	if (timer > 0.4)
 	{
 		activeTexture++;
+		if (activeTexture > 2)
+		{
+			activeTexture = 0;
+		}
 		timer = 0;
 	}
 
@@ -62,27 +61,12 @@ Vector2 Player::GetPosition() const noexcept
 }
 
 
-
-int Player::GetActiveTexture() const noexcept
+#pragma warning( push )
+#pragma warning( disable : 26482)
+#pragma warning( disable : 26446)//Suppressing warnings related to use of array[]. activeTexture is ensured to be safe to use here
+void Player::Render(const std::array< TextureRAII, 3>& textures) const noexcept
 {
-	return activeTexture;
+	textures[activeTexture].Draw(GetPosition());
 }
-
-void Player::Render(const TextureRAII& texture) const noexcept
-{
-	DrawTexturePro(texture.Get(),
-		{
-			0,
-			0,
-			352,
-			352,
-		},
-		{
-			x_pos, GetScreenHeight() - PLAYER_BASE_HEIGHT,
-			100,
-			100,
-		}, { 50, 50 },
-		0,
-		WHITE);
-}
+#pragma warning (pop)
 

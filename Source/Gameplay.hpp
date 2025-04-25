@@ -21,7 +21,8 @@ class Gameplay
 	float shootTimer = 0;
 
 	Player player;
-	std::vector<Projectile> projectiles;
+	std::vector<Projectile> playerProjectile;
+	std::vector<Projectile> alienProjectile;
 	std::vector<Wall> walls;
 	std::vector<Alien> aliens; 
 	Background background;

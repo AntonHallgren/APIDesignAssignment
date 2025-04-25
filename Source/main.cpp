@@ -23,13 +23,10 @@
 
 #include "game.hpp"
 #include <ctime>
+#include <iostream>
 
-
-#pragma warning( push )
-#pragma warning( disable : 26472 )
 int main(void)
 {
-    std::srand(static_cast<unsigned int>(std::time({})));
     try {
         Game game; 
         while (!WindowShouldClose())
@@ -38,14 +35,13 @@ int main(void)
             game.Render();
         }
     }
-    catch(std::runtime_error e)
+    catch(const std::runtime_error& e)
     {
-        std::printf(e.what());
+        std::cerr << e.what();
     }
     catch (...)
     {
-        std::printf("Something was thrown");
+        std::cerr << "Something was thrown";
     }
     return 0;
 }
-#pragma warning( pop )

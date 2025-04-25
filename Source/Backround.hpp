@@ -8,11 +8,11 @@ constexpr int STAR_SIDE_MARGINS = 150;
 class Star
 {
 	Vector2 initPosition = {
-		RandomFloatWithIntegerValue(-STAR_SIDE_MARGINS, GetScreenWidth() + STAR_SIDE_MARGINS) ,
-		RandomFloatWithIntegerValue(0, GetScreenHeight()) };
+		GetRandomValueF(-STAR_SIDE_MARGINS, GetScreenWidth() + STAR_SIDE_MARGINS) ,
+		GetRandomValueF(0, GetScreenHeight()) };
 	Vector2 position = { 0, 0 };
 	Color color = SKYBLUE;
-	float size = RandomFloatWithIntegerValue(1, 4) / 2.0f;
+	float size = GetRandomValueF(1, 4) / 2.0f;
 public:
 	void Update(float starOffset) noexcept;
 	void Render() const noexcept;

@@ -51,11 +51,14 @@ bool Endscreen::CheckNewHighScore() noexcept
 void Endscreen::InsertNewHighScore(std::string nameGiven) noexcept
 {
 	PlayerData newData{ nameGiven, score };
-	for (PlayerData& oldData : Leaderboard)
-	{
-		if (newData.score > oldData.score)
-		{
-			std::swap(newData, oldData);
+	//TODO: consider: 
+	//1. push_back
+	//2. std::sort
+	//3. if leaderbord.size > 5, pop_back()
+
+	for (PlayerData& oldData : Leaderboard){
+		if (newData.score > oldData.score){
+			std::swap(newData, oldData);			
 		}
 	}
 }
@@ -81,16 +84,18 @@ void Endscreen::UpdateNameInputScreen()
 	}
 }
 
-#pragma warning( push )
-#pragma warning( disable : 26472 )
+
 void Endscreen::ReadKeyboard()
 {
 	int key = GetCharPressed();
 	while (key > 0)
 	{
-		if ((key >= 32) && (key <= 125) && (name.length() < MAX_NAME_LENGTH+1))
+		if ((key > 31) && (key < 126) && (name.length() < MAX_NAME_LENGTH+1))
 		{
+			#pragma warning( push )
+			#pragma warning( disable : 26472 ) //Suppressing warning about type conversion. The key is checked to be in an acceptable range, so it is fine
 			name.push_back(static_cast<char>(key));
+			#pragma warning( pop )
 		}
 		key = GetCharPressed();
 	}
@@ -100,7 +105,6 @@ void Endscreen::ReadKeyboard()
 	}
 
 }
-#pragma warning( pop )
 
 
 void Endscreen::RenderNameInputScreen() const noexcept

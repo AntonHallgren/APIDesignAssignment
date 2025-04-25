@@ -44,19 +44,5 @@ Vector2 Projectile::GetLineEnd() const noexcept
 
 void Projectile::Render(const TextureRAII& texture) const noexcept
 {
-	DrawTexturePro(texture.Get(),
-		{
-			0,
-			0,
-			176,
-			176,
-		},
-		{
-			position.x,
-			position.y,
-			50,
-			50,
-		}, { 25 , 25 },
-		0,
-		WHITE);
+	texture.Draw(position);
 }
