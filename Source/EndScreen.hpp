@@ -11,7 +11,7 @@ struct PlayerData
 };
 
 
-constexpr int MAX_NAME_LENGTH = 8;
+constexpr size_t MAX_NAME_LENGTH = 8;
 class Endscreen
 {
 	int score = 0;
